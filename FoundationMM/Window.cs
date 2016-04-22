@@ -70,7 +70,7 @@ namespace FoundationMM
             }
             else
             {
-                modNumberLabel.Text = listView1.Items.Count + " mods available";
+                modNumberLabel.Text = modCount + " mods available";
             }
         }
 
