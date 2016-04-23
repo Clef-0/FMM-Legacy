@@ -54,7 +54,7 @@ namespace FoundationMM
             if (!File.Exists(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mtndew.dll")))
             {
                 MessageBox.Show("The FMM zip should be extracted to the root of your ElDewrito directory.");
-                Environment.Exit(0);
+                Application.Exit();
             }
 
 
