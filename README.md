@@ -1,6 +1,8 @@
 # FMM
 Mod manager for Halo Online.
 
+![Screenshot of FMM](https://vgy.me/uljH0n.png)
+
 ### Make your mods compatible
 A .fm file should be treated as a .bat file being run from the root Halo Online folder. The only files it should modify are files in /maps (ones which have been backed up by FMM).
 
