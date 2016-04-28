@@ -1,4 +1,4 @@
-# FMM
+# Foundation Mod Manager
 Mod manager for Halo Online.
 
 ![Screenshot of FMM](https://vgy.me/uljH0n.png)
