@@ -53,25 +53,26 @@ namespace FoundationMM
             DirectoryInfo dir0 = Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "mods", "tagmods"));
             
             deleteOldBackupWorker.WorkerSupportsCancellation = true;
-            deleteOldBackupWorker.DoWork += new DoWorkEventHandler(restoreCleanWorker_DoWork);
+            deleteOldBackupWorker.DoWork += new DoWorkEventHandler(deleteOldBackup_DoWork);
 
-            string identifier = Path.Combine(System.IO.Directory.GetCurrentDirectory() + "fmm.ini");
+            string identifier = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini");
             if (!File.Exists(identifier))
             {
                 IniFile ini = new IniFile(identifier);
-                FileVersionInfo mtndewVersion = FileVersionInfo.GetVersionInfo(Path.Combine(Directory.GetCurrentDirectory() + "mtndew.dll"));
+                FileVersionInfo mtndewVersion = FileVersionInfo.GetVersionInfo(Path.Combine(Directory.GetCurrentDirectory(), "mtndew.dll"));
                 ini.IniWriteValue("FMMPrefs", "EDVersion", mtndewVersion.FileVersion);
             }
             else
             {
                 IniFile ini = new IniFile(identifier);
                 string savedversion = ini.IniReadValue("FMMPrefs", "EDVersion");
-                string actualversion = FileVersionInfo.GetVersionInfo(Path.Combine(Directory.GetCurrentDirectory() + "mtndew.dll")).FileVersion;
+                string actualversion = FileVersionInfo.GetVersionInfo(Path.Combine(Directory.GetCurrentDirectory(), "mtndew.dll")).FileVersion;
 
                 if (savedversion != actualversion)
                 {
                     string mapsPath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "maps");
                     deleteOldBackupWorker.RunWorkerAsync(new string[] { mapsPath });
+                    ini.IniWriteValue("FMMPrefs", "EDVersion", actualversion);
                 }
             }
 
