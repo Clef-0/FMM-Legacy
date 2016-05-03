@@ -51,7 +51,15 @@ namespace FoundationMM
         private void Form1_Load(object sender, EventArgs e)
         {
             DirectoryInfo dir0 = Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "mods", "tagmods"));
-            
+
+            if (!File.Exists(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mtndew.dll")))
+            {
+                MessageBox.Show("The FMM zip should be extracted to the root of your ElDewrito directory.");
+#if !DEBUG
+                Application.Exit();
+#endif
+            }
+
             deleteOldBackupWorker.WorkerSupportsCancellation = true;
             deleteOldBackupWorker.DoWork += new DoWorkEventHandler(deleteOldBackup_DoWork);
 
@@ -74,14 +82,6 @@ namespace FoundationMM
                     deleteOldBackupWorker.RunWorkerAsync(new string[] { mapsPath });
                     ini.IniWriteValue("FMMPrefs", "EDVersion", actualversion);
                 }
-            }
-
-            if (!File.Exists(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mtndew.dll")))
-            {
-                MessageBox.Show("The FMM zip should be extracted to the root of your ElDewrito directory.");
-                #if !DEBUG
-                Application.Exit();
-                #endif
             }
 
 
