@@ -191,7 +191,7 @@ namespace FoundationMM
                     {
                         File.Copy(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file), true);
                         i++;
-                        float progress = (i / files.Count()) * 100f;
+                        float progress = ((float)i / (float)files.Count()) * 100;
                         worker.ReportProgress(Convert.ToInt32(progress));
                     }
                 }
@@ -272,6 +272,13 @@ namespace FoundationMM
 
                 percentageLabel.Text = "";
                 MessageBox.Show("Selected mods applied.");
+                button1.Enabled = true;
+                button2.Enabled = true;
+                openGameRoot.Enabled = true;
+                openMods.Enabled = true;
+                button7.Enabled = true;
+                button5.Enabled = true;
+                button6.Enabled = true;
             }
         }
 
@@ -296,16 +303,16 @@ namespace FoundationMM
             DirectoryInfo dir2 = Directory.CreateDirectory(Path.Combine(mapsPath, "fmmbak", "fonts"));
             DirectoryInfo dir3 = Directory.CreateDirectory(Path.Combine(mapsPath, "fonts"));
 
-            button1.Enabled = false;
-            button2.Enabled = false;
-            openGameRoot.Enabled = false;
-            openMods.Enabled = false;
-            button7.Enabled = false;
-            button5.Enabled = false;
-            button6.Enabled = false;
 
             if (fileTransferWorker.IsBusy != true)
             {
+                button1.Enabled = false;
+                button2.Enabled = false;
+                openGameRoot.Enabled = false;
+                openMods.Enabled = false;
+                button7.Enabled = false;
+                button5.Enabled = false;
+                button6.Enabled = false;
                 fileTransferWorker.RunWorkerAsync(new string[] { mapsPath });
             }
         }
@@ -371,9 +378,9 @@ namespace FoundationMM
                     {
                         File.Copy(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file), true);
                         i++;
-                        float progress = (i / files.Count()) * 100f;
-                        worker.ReportProgress(Convert.ToInt32(progress));
-                    }
+                    float progress = ((float)i / (float)files.Count()) * 100;
+                    worker.ReportProgress(Convert.ToInt32(progress));
+                }
                 }
         }
 
@@ -396,11 +403,23 @@ namespace FoundationMM
             {
                 percentageLabel.Text = "";
                 MessageBox.Show("Clean files restored.");
+                button1.Enabled = true;
+                button2.Enabled = true;
+                openGameRoot.Enabled = true;
+                openMods.Enabled = true;
+                button7.Enabled = true;
+                button5.Enabled = true;
+                button6.Enabled = true;
             }
         }
 
         private void cleanClick(object sender, EventArgs e)
         {
+            restoreCleanWorker.WorkerSupportsCancellation = true;
+            restoreCleanWorker.WorkerReportsProgress = true;
+            restoreCleanWorker.DoWork += new DoWorkEventHandler(restoreCleanWorker_DoWork);
+            restoreCleanWorker.ProgressChanged += new ProgressChangedEventHandler(restoreCleanWorker_ProgressChanged);
+            restoreCleanWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(restoreCleanWorker_RunWorkerCompleted);
 
             string fmmdat = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.dat");
             FileStream fmmdatWiper = File.Open(fmmdat, FileMode.OpenOrCreate);
@@ -413,7 +432,17 @@ namespace FoundationMM
             DirectoryInfo dir3 = Directory.CreateDirectory(Path.Combine(mapsPath, "fonts"));
             if (File.Exists(Path.Combine(mapsPath, "fmmbak", "tags.dat")))
             {
-                fileTransferWorker.RunWorkerAsync(new string[] { mapsPath });
+                if (fileTransferWorker.IsBusy != true)
+                {
+                    button1.Enabled = false;
+                    button2.Enabled = false;
+                    openGameRoot.Enabled = false;
+                    openMods.Enabled = false;
+                    button7.Enabled = false;
+                    button5.Enabled = false;
+                    button6.Enabled = false;
+                    restoreCleanWorker.RunWorkerAsync(new string[] { mapsPath });
+                }
             }
             else
             {
