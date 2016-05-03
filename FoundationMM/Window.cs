@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ini;
 using System.Diagnostics;
+using System.Threading;
 
 namespace FoundationMM
 {
@@ -50,11 +51,13 @@ namespace FoundationMM
         private void Form1_Load(object sender, EventArgs e)
         {
             DirectoryInfo dir0 = Directory.CreateDirectory(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods"));
-            
+
             if (!File.Exists(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mtndew.dll")))
             {
                 MessageBox.Show("The FMM zip should be extracted to the root of your ElDewrito directory.");
+                #if !DEBUG
                 Application.Exit();
+                #endif
             }
 
 
@@ -146,9 +149,141 @@ namespace FoundationMM
             Process.Start(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "eldorado.exe"), "-launcher");
         }
 
+        BackgroundWorker fileTransferWorker = new BackgroundWorker();
+
+        private void fileTransferWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string[] args = (string[])e.Argument;
+
+            string mapsPath = args[0];
+
+
+            BackgroundWorker worker = sender as BackgroundWorker;
+            int i = 0;
+            if (!File.Exists(Path.Combine(mapsPath, "fmmbak", "tags.dat")))
+            {
+                foreach (string file in files)
+                {
+                    if ((worker.CancellationPending == true))
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+                    else
+                    {
+                        File.Copy(Path.Combine(mapsPath, file), Path.Combine(mapsPath, "fmmbak", file), true);
+                        i++;
+                        float progress = ((float)i / (float)files.Count()) * 100;
+                        worker.ReportProgress(Convert.ToInt32(progress));
+                    }
+                }
+            }
+            else
+            {
+                foreach (string file in files)
+                {
+                    if ((worker.CancellationPending == true))
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+                    else
+                    {
+                        File.Copy(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file), true);
+                        i++;
+                        float progress = (i / files.Count()) * 100f;
+                        worker.ReportProgress(Convert.ToInt32(progress));
+                    }
+                }
+            }
+        }
+
+        private void fileTransferWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            percentageLabel.Text = "Preparing clean files: " + e.ProgressPercentage.ToString() + "%";
+        }
+
+        private void fileTransferWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if ((e.Cancelled == true))
+            {
+                percentageLabel.Text = "Canceled!";
+            }
+            else if (!(e.Error == null))
+            {
+                percentageLabel.Text = ("Error: " + e.Error.Message);
+            }
+            else
+            {
+                // Save File Storing Checked Items And Order
+
+                string fmmdat = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.dat");
+                FileStream fmmdatWiper = File.Open(fmmdat, FileMode.OpenOrCreate);
+                fmmdatWiper.SetLength(0);
+                fmmdatWiper.Close();
+
+                StreamWriter fmmdatWriter = new StreamWriter(fmmdat);
+                foreach (ListViewItem item in listView1.CheckedItems.Cast<ListViewItem>().AsEnumerable().Reverse())
+                {
+                    fmmdatWriter.WriteLine(item.SubItems[0].Text);
+                }
+                fmmdatWriter.Close();
+
+                //apply mods
+                foreach (ListViewItem item in listView1.CheckedItems.Cast<ListViewItem>().AsEnumerable().Reverse())
+                {
+                    // init variables
+                    string fmFile = item.SubItems[3].Text;
+                    string batFile = Path.Combine(Path.GetDirectoryName(fmFile), "fm_temp.bat");
+
+                    try
+                    {
+                        // duplicate .fm as temp .bat installer.
+                        File.Copy(fmFile, batFile, true);
+
+                        // startInfo for installer
+                        ProcessStartInfo startInfo = new ProcessStartInfo();
+                        startInfo.CreateNoWindow = true;
+                        startInfo.UseShellExecute = false;
+                        startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        startInfo.FileName = batFile;
+                        startInfo.WorkingDirectory = System.IO.Directory.GetCurrentDirectory();
+
+                        // start installer
+                        using (Process exeProcess = Process.Start(startInfo))
+                        {
+                            exeProcess.WaitForExit();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error installing " + item.SubItems[0].Text + ".\nPlease consult the #eldorito IRC for help.\n\n\"" + ex.Message + "\"", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        try
+                        {
+                            // delete installer
+                            File.Delete(batFile);
+                        }
+                        catch { }
+                    }
+                }
+
+                percentageLabel.Text = "";
+                MessageBox.Show("Selected mods applied.");
+            }
+        }
+
         private void applyClick(object sender, EventArgs e)
         {
-            int progress = 0;
+
+            fileTransferWorker.WorkerSupportsCancellation = true;
+            fileTransferWorker.WorkerReportsProgress = true;
+            fileTransferWorker.DoWork += new DoWorkEventHandler(fileTransferWorker_DoWork);
+            fileTransferWorker.ProgressChanged += new ProgressChangedEventHandler(fileTransferWorker_ProgressChanged);
+            fileTransferWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(fileTransferWorker_RunWorkerCompleted);
+            
             if (listView1.CheckedItems.Count == 0) { return; }
 
             DialogResult confirmApply = MessageBox.Show("Are you sure you want to apply these mods?\nMods downloaded from unsafe locations may harm your computer.", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -161,96 +296,18 @@ namespace FoundationMM
             DirectoryInfo dir2 = Directory.CreateDirectory(Path.Combine(mapsPath, "fmmbak", "fonts"));
             DirectoryInfo dir3 = Directory.CreateDirectory(Path.Combine(mapsPath, "fonts"));
 
-            if (!File.Exists(Path.Combine(mapsPath, "fmmbak", "tags.dat")))
+            button1.Enabled = false;
+            button2.Enabled = false;
+            openGameRoot.Enabled = false;
+            openMods.Enabled = false;
+            button7.Enabled = false;
+            button5.Enabled = false;
+            button6.Enabled = false;
+
+            if (fileTransferWorker.IsBusy != true)
             {
-                progress = 0;
-                foreach (string file in files)
-                {
-                    percentageLabel.Text = "Backing up clean files: " + progress + "% [" + file + "]";
-                    Application.DoEvents();
-                    File.Copy(Path.Combine(mapsPath, file), Path.Combine(mapsPath, "fmmbak", file), true);
-                    progress = Convert.ToInt32(progress + ((1f / files.Count()) * 100f));
-                }
-                percentageLabel.Text = "";
+                fileTransferWorker.RunWorkerAsync(new string[] { mapsPath });
             }
-            else
-            {
-                progress = 0;
-                foreach (string file in files)
-                {
-                    percentageLabel.Text = "Restoring clean files: " + progress + "% [" + file + "]";
-                    Application.DoEvents();
-                    File.Copy(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file), true);
-                    progress = Convert.ToInt32(progress + ((1f / files.Count()) * 100f));
-                }
-                percentageLabel.Text = "";
-            }
-
-
-            // Save File Storing Checked Items And Order
-
-            string fmmdat = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.dat");
-            FileStream fmmdatWiper = File.Open(fmmdat, FileMode.OpenOrCreate);
-            fmmdatWiper.SetLength(0);
-            fmmdatWiper.Close();
-
-            StreamWriter fmmdatWriter = new StreamWriter(fmmdat);
-            foreach (ListViewItem item in listView1.CheckedItems.Cast<ListViewItem>().AsEnumerable().Reverse())
-            {
-                fmmdatWriter.WriteLine(item.SubItems[0].Text);
-            }
-            fmmdatWriter.Close();
-
-
-
-            progress = 0;
-            foreach (ListViewItem item in listView1.CheckedItems.Cast<ListViewItem>().AsEnumerable().Reverse())
-            {
-                percentageLabel.Text = "Applying mods: " + progress + "% [" + item.SubItems[0].Text + "]";
-                Application.DoEvents();
-
-                // init variables
-                string fmFile = item.SubItems[3].Text;
-                string batFile = Path.Combine(Path.GetDirectoryName(fmFile), "fm_temp.bat");
-
-                try
-                {
-                    // duplicate .fm as temp .bat installer.
-                    File.Copy(fmFile, batFile, true);
-
-                    // startInfo for installer
-                    ProcessStartInfo startInfo = new ProcessStartInfo();
-                    startInfo.CreateNoWindow = true;
-                    startInfo.UseShellExecute = false;
-                    startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    startInfo.FileName = batFile;
-                    startInfo.WorkingDirectory = System.IO.Directory.GetCurrentDirectory();
-
-                    // start installer
-                    using (Process exeProcess = Process.Start(startInfo))
-                    {
-                        exeProcess.WaitForExit();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error installing " + item.SubItems[0].Text + ".\nPlease consult the #eldorito IRC for help.\n\n\"" + ex.Message + "\"", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    try
-                    {
-                        // delete installer
-                        File.Delete(batFile);
-                    }
-                    catch { }
-                }
-
-                progress = Convert.ToInt32(progress + ((1f / listView1.CheckedItems.Count) * 100f));
-            }
-
-            percentageLabel.Text = "";
-            MessageBox.Show("Selected mods applied.");
         }
 
         private void upClick(object sender, EventArgs e)
@@ -292,6 +349,56 @@ namespace FoundationMM
             catch {}
         }
 
+        BackgroundWorker restoreCleanWorker = new BackgroundWorker();
+
+        private void restoreCleanWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string[] args = (string[])e.Argument;
+
+            string mapsPath = args[0];
+
+
+            BackgroundWorker worker = sender as BackgroundWorker;
+            int i = 0;
+                foreach (string file in files)
+                {
+                    if ((worker.CancellationPending == true))
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+                    else
+                    {
+                        File.Copy(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file), true);
+                        i++;
+                        float progress = (i / files.Count()) * 100f;
+                        worker.ReportProgress(Convert.ToInt32(progress));
+                    }
+                }
+        }
+
+        private void restoreCleanWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            percentageLabel.Text = "Restoring clean files: " + e.ProgressPercentage.ToString() + "%";
+        }
+
+        private void restoreCleanWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if ((e.Cancelled == true))
+            {
+                percentageLabel.Text = "Canceled!";
+            }
+            else if (!(e.Error == null))
+            {
+                percentageLabel.Text = ("Error: " + e.Error.Message);
+            }
+            else
+            {
+                percentageLabel.Text = "";
+                MessageBox.Show("Clean files restored.");
+            }
+        }
+
         private void cleanClick(object sender, EventArgs e)
         {
 
@@ -306,15 +413,7 @@ namespace FoundationMM
             DirectoryInfo dir3 = Directory.CreateDirectory(Path.Combine(mapsPath, "fonts"));
             if (File.Exists(Path.Combine(mapsPath, "fmmbak", "tags.dat")))
             {
-                int progress = 0;
-                foreach (string file in files)
-                {
-                    percentageLabel.Text = "Restoring clean files: " + progress + "% [" + file + "]";
-                    Application.DoEvents();
-                    File.Copy(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file), true);
-                    progress = Convert.ToInt32(progress + ( (1f / files.Count()) * 100f ));
-                }
-                percentageLabel.Text = "";
+                fileTransferWorker.RunWorkerAsync(new string[] { mapsPath });
             }
             else
             {
