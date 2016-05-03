@@ -50,7 +50,30 @@ namespace FoundationMM
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DirectoryInfo dir0 = Directory.CreateDirectory(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods"));
+            DirectoryInfo dir0 = Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "mods", "tagmods"));
+            
+            deleteOldBackupWorker.WorkerSupportsCancellation = true;
+            deleteOldBackupWorker.DoWork += new DoWorkEventHandler(restoreCleanWorker_DoWork);
+
+            string identifier = Path.Combine(System.IO.Directory.GetCurrentDirectory() + "fmm.ini");
+            if (!File.Exists(identifier))
+            {
+                IniFile ini = new IniFile(identifier);
+                FileVersionInfo mtndewVersion = FileVersionInfo.GetVersionInfo(Path.Combine(Directory.GetCurrentDirectory() + "mtndew.dll"));
+                ini.IniWriteValue("FMMPrefs", "EDVersion", mtndewVersion.FileVersion);
+            }
+            else
+            {
+                IniFile ini = new IniFile(identifier);
+                string savedversion = ini.IniReadValue("FMMPrefs", "EDVersion");
+                string actualversion = FileVersionInfo.GetVersionInfo(Path.Combine(Directory.GetCurrentDirectory() + "mtndew.dll")).FileVersion;
+
+                if (savedversion != actualversion)
+                {
+                    string mapsPath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "maps");
+                    deleteOldBackupWorker.RunWorkerAsync(new string[] { mapsPath });
+                }
+            }
 
             if (!File.Exists(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mtndew.dll")))
             {
@@ -74,6 +97,32 @@ namespace FoundationMM
             else
             {
                 modNumberLabel.Text = modCount + " mods available";
+            }
+        }
+
+        BackgroundWorker deleteOldBackupWorker = new BackgroundWorker();
+
+        private void deleteOldBackup_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string[] args = (string[])e.Argument;
+            string mapsPath = args[0];
+
+
+            BackgroundWorker worker = sender as BackgroundWorker;
+            if (File.Exists(Path.Combine(mapsPath, "fmmbak", "tags.dat")))
+            {
+                foreach (string file in files)
+                {
+                    if ((worker.CancellationPending == true))
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+                    else
+                    {
+                        File.Delete(Path.Combine(mapsPath, "fmmbak", file));
+                    }
+                }
             }
         }
 
@@ -432,7 +481,7 @@ namespace FoundationMM
             DirectoryInfo dir3 = Directory.CreateDirectory(Path.Combine(mapsPath, "fonts"));
             if (File.Exists(Path.Combine(mapsPath, "fmmbak", "tags.dat")))
             {
-                if (fileTransferWorker.IsBusy != true)
+                if (restoreCleanWorker.IsBusy != true)
                 {
                     button1.Enabled = false;
                     button2.Enabled = false;
