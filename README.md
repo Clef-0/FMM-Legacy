@@ -1,6 +1,14 @@
-# FMM
-Mod manager for Halo Online.
+# FMM (Foundation Mod Manager)
+Mod manager for Halo Online. Don't download this expecting all your old mods to work. (hint: they won't)
 
+![Screenshot of FMM](https://vgy.me/uljH0n.png)
+
+### To-do
+* Restructure so less things are in the Window class
+* Add threading so file transfers and installations can take place without locking up the program
+* HaloCafe integration for easy mod downloads
+
+## Tutorials
 ### Make your mods compatible
 A .fm file should be treated as a .bat file being run from the root Halo Online folder. The only files it should modify are files in /maps (ones which have been backed up by FMM).
 
