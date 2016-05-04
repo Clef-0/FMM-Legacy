@@ -1,6 +1,7 @@
 # FMM (Foundation Mod Manager)
 Mod manager for Halo Online. Don't download this expecting all your old mods to work. (hint: they won't)
 
+![FMM Logo](https://vgy.me/EvUokK.png)
 ![Screenshot of FMM](https://vgy.me/uljH0n.png)
 
 ### To-do
