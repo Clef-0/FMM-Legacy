@@ -186,7 +186,9 @@ namespace FoundationMM
                     string modName = ini.IniReadValue("FMMInfo", "Name");
                     string modAuthor = ini.IniReadValue("FMMInfo", "Author");
                     string modDesc = ini.IniReadValue("FMMInfo", "Desc");
-                    listView1.Items.Add(new ListViewItem(new[] { modName, modAuthor, modDesc, fmfile }));
+
+                    string modLocation = fmfile.Replace(Path.Combine(Directory.GetCurrentDirectory(), "mods\\"), "");
+                    listView1.Items.Add(new ListViewItem(new[] { modName, modAuthor, modDesc, modLocation }));
                 }
             }
         }
@@ -326,7 +328,7 @@ namespace FoundationMM
             foreach (ListViewItem item in listView1.CheckedItems.Cast<ListViewItem>().AsEnumerable().Reverse())
             {
                 // init variables
-                string fmFile = item.SubItems[3].Text;
+                string fmFile = Path.Combine(Directory.GetCurrentDirectory(), "mods", item.SubItems[3].Text);
                 string batFile = Path.Combine(Path.GetDirectoryName(fmFile), "fm_temp.bat");
 
                 try
