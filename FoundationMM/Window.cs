@@ -70,14 +70,13 @@ namespace FoundationMM
             restoreCleanWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(restoreCleanWorker_RunWorkerCompleted);
 
             DirectoryInfo dir0 = Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "mods", "tagmods"));
-
+#if !DEBUG
             if (!File.Exists(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mtndew.dll")))
             {
                 MessageBox.Show("The FMM zip should be extracted to the root of your ElDewrito directory.");
-#if !DEBUG
+
                 Application.Exit();
                 return;
-#endif
             }
 
             string identifier = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini");
@@ -101,6 +100,7 @@ namespace FoundationMM
                 }
             }
 
+#endif
 
             lookForFMMInstallers();
             addFMMInstallersToList();

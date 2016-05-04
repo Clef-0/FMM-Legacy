@@ -232,7 +232,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(536, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(567, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // percentageLabel
