@@ -76,6 +76,7 @@ namespace FoundationMM
                 MessageBox.Show("The FMM zip should be extracted to the root of your ElDewrito directory.");
 #if !DEBUG
                 Application.Exit();
+                return;
 #endif
             }
 
