@@ -362,9 +362,9 @@ namespace FoundationMM
             DirectoryInfo dir1 = Directory.CreateDirectory(Path.Combine(mapsPath, "fmmbak"));
             DirectoryInfo dir2 = Directory.CreateDirectory(Path.Combine(mapsPath, "fmmbak", "fonts"));
             DirectoryInfo dir3 = Directory.CreateDirectory(Path.Combine(mapsPath, "fonts"));
+            
 
-
-            if (fileTransferWorker.IsBusy != true)
+            if (fileTransferWorker.IsBusy != true || !IsFileLocked(new FileInfo(Path.Combine(mapsPath, "tags.dat"))))
             {
                 button1.Enabled = false;
                 button2.Enabled = false;
@@ -375,6 +375,26 @@ namespace FoundationMM
                 button6.Enabled = false;
                 fileTransferWorker.RunWorkerAsync(new string[] { mapsPath });
             }
+        }
+
+        public bool IsFileLocked(FileInfo file)
+        {
+            FileStream stream = null;
+
+            try
+            {
+                stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+            }
+            catch (IOException)
+            {
+                return true;
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+            return false;
         }
 
         private void upClick(object sender, EventArgs e)
@@ -484,7 +504,7 @@ namespace FoundationMM
             DirectoryInfo dir3 = Directory.CreateDirectory(Path.Combine(mapsPath, "fonts"));
             if (File.Exists(Path.Combine(mapsPath, "fmmbak", "tags.dat")))
             {
-                if (restoreCleanWorker.IsBusy != true)
+                if (restoreCleanWorker.IsBusy != true || !IsFileLocked(new FileInfo(Path.Combine(mapsPath, "tags.dat"))))
                 {
                     button1.Enabled = false;
                     button2.Enabled = false;
