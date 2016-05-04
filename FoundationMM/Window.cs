@@ -305,9 +305,11 @@ namespace FoundationMM
 
                         // startInfo for installer
                         ProcessStartInfo startInfo = new ProcessStartInfo();
+#if !DEBUG
                         startInfo.CreateNoWindow = true;
                         startInfo.UseShellExecute = false;
                         startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+#endif
                         startInfo.FileName = batFile;
                         startInfo.WorkingDirectory = System.IO.Directory.GetCurrentDirectory();
 
