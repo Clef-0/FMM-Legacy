@@ -48,8 +48,27 @@ namespace FoundationMM
             InitializeComponent();
         }
 
+        BackgroundWorker deleteOldBackupWorker = new BackgroundWorker();
+        BackgroundWorker fileTransferWorker = new BackgroundWorker();
+        BackgroundWorker restoreCleanWorker = new BackgroundWorker();
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            deleteOldBackupWorker.WorkerSupportsCancellation = true;
+            deleteOldBackupWorker.DoWork += new DoWorkEventHandler(deleteOldBackup_DoWork);
+
+            fileTransferWorker.WorkerSupportsCancellation = true;
+            fileTransferWorker.WorkerReportsProgress = true;
+            fileTransferWorker.DoWork += new DoWorkEventHandler(fileTransferWorker_DoWork);
+            fileTransferWorker.ProgressChanged += new ProgressChangedEventHandler(fileTransferWorker_ProgressChanged);
+            fileTransferWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(fileTransferWorker_RunWorkerCompleted);
+
+            restoreCleanWorker.WorkerSupportsCancellation = true;
+            restoreCleanWorker.WorkerReportsProgress = true;
+            restoreCleanWorker.DoWork += new DoWorkEventHandler(restoreCleanWorker_DoWork);
+            restoreCleanWorker.ProgressChanged += new ProgressChangedEventHandler(restoreCleanWorker_ProgressChanged);
+            restoreCleanWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(restoreCleanWorker_RunWorkerCompleted);
+
             DirectoryInfo dir0 = Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "mods", "tagmods"));
 
             if (!File.Exists(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mtndew.dll")))
@@ -59,9 +78,6 @@ namespace FoundationMM
                 Application.Exit();
 #endif
             }
-
-            deleteOldBackupWorker.WorkerSupportsCancellation = true;
-            deleteOldBackupWorker.DoWork += new DoWorkEventHandler(deleteOldBackup_DoWork);
 
             string identifier = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini");
             if (!File.Exists(identifier))
@@ -100,8 +116,6 @@ namespace FoundationMM
                 modNumberLabel.Text = modCount + " mods available";
             }
         }
-
-        BackgroundWorker deleteOldBackupWorker = new BackgroundWorker();
 
         private void deleteOldBackup_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -198,8 +212,6 @@ namespace FoundationMM
         {
             Process.Start(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "eldorado.exe"), "-launcher");
         }
-
-        BackgroundWorker fileTransferWorker = new BackgroundWorker();
 
         private void fileTransferWorker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -316,7 +328,9 @@ namespace FoundationMM
                             // delete installer
                             File.Delete(batFile);
                         }
-                        catch { }
+                        catch {
+                            MessageBox.Show("Whoops. That's not good. Tell Clef, please.");
+                        }
                     }
                 }
 
@@ -334,13 +348,6 @@ namespace FoundationMM
 
         private void applyClick(object sender, EventArgs e)
         {
-
-            fileTransferWorker.WorkerSupportsCancellation = true;
-            fileTransferWorker.WorkerReportsProgress = true;
-            fileTransferWorker.DoWork += new DoWorkEventHandler(fileTransferWorker_DoWork);
-            fileTransferWorker.ProgressChanged += new ProgressChangedEventHandler(fileTransferWorker_ProgressChanged);
-            fileTransferWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(fileTransferWorker_RunWorkerCompleted);
-            
             if (listView1.CheckedItems.Count == 0) { return; }
 
             DialogResult confirmApply = MessageBox.Show("Are you sure you want to apply these mods?\nMods downloaded from unsafe locations may harm your computer.", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -406,8 +413,6 @@ namespace FoundationMM
             catch {}
         }
 
-        BackgroundWorker restoreCleanWorker = new BackgroundWorker();
-
         private void restoreCleanWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             string[] args = (string[])e.Argument;
@@ -465,12 +470,6 @@ namespace FoundationMM
 
         private void cleanClick(object sender, EventArgs e)
         {
-            restoreCleanWorker.WorkerSupportsCancellation = true;
-            restoreCleanWorker.WorkerReportsProgress = true;
-            restoreCleanWorker.DoWork += new DoWorkEventHandler(restoreCleanWorker_DoWork);
-            restoreCleanWorker.ProgressChanged += new ProgressChangedEventHandler(restoreCleanWorker_ProgressChanged);
-            restoreCleanWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(restoreCleanWorker_RunWorkerCompleted);
-
             string fmmdat = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.dat");
             FileStream fmmdatWiper = File.Open(fmmdat, FileMode.OpenOrCreate);
             fmmdatWiper.SetLength(0);
