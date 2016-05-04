@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Ini
 {
-
     public class IniFile
     {
         public string path;
