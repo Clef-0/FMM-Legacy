@@ -50,6 +50,7 @@ namespace FoundationMM
 
         BackgroundWorker deleteOldBackupWorker = new BackgroundWorker();
         BackgroundWorker fileTransferWorker = new BackgroundWorker();
+        BackgroundWorker modInstallWorker = new BackgroundWorker();
         BackgroundWorker restoreCleanWorker = new BackgroundWorker();
 
         private void Form1_Load(object sender, EventArgs e)
@@ -62,6 +63,12 @@ namespace FoundationMM
             fileTransferWorker.DoWork += new DoWorkEventHandler(fileTransferWorker_DoWork);
             fileTransferWorker.ProgressChanged += new ProgressChangedEventHandler(fileTransferWorker_ProgressChanged);
             fileTransferWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(fileTransferWorker_RunWorkerCompleted);
+
+            modInstallWorker.WorkerSupportsCancellation = true;
+            modInstallWorker.WorkerReportsProgress = true;
+            modInstallWorker.DoWork += new DoWorkEventHandler(modInstallWorker_DoWork);
+            modInstallWorker.ProgressChanged += new ProgressChangedEventHandler(modInstallWorker_ProgressChanged);
+            modInstallWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(modInstallWorker_RunWorkerCompleted);
 
             restoreCleanWorker.WorkerSupportsCancellation = true;
             restoreCleanWorker.WorkerReportsProgress = true;
@@ -278,75 +285,110 @@ namespace FoundationMM
             }
             else
             {
-                // Save File Storing Checked Items And Order
+                string mapsPath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "maps");
 
-                string fmmdat = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.dat");
-                FileStream fmmdatWiper = File.Open(fmmdat, FileMode.OpenOrCreate);
-                fmmdatWiper.SetLength(0);
-                fmmdatWiper.Close();
-
-                StreamWriter fmmdatWriter = new StreamWriter(fmmdat);
-                foreach (ListViewItem item in listView1.CheckedItems.Cast<ListViewItem>().AsEnumerable().Reverse())
+                if (modInstallWorker.IsBusy != true)
                 {
-                    fmmdatWriter.WriteLine(item.SubItems[0].Text);
+                    button1.Enabled = false;
+                    button2.Enabled = false;
+                    openGameRoot.Enabled = false;
+                    openMods.Enabled = false;
+                    button7.Enabled = false;
+                    button5.Enabled = false;
+                    button6.Enabled = false;
+                    modInstallWorker.RunWorkerAsync(new string[] { mapsPath });
                 }
-                fmmdatWriter.Close();
+            }
+        }
 
-                //apply mods
-                foreach (ListViewItem item in listView1.CheckedItems.Cast<ListViewItem>().AsEnumerable().Reverse())
+        public void modInstallWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            int i = 0;
+
+            // Save File Storing Checked Items And Order
+
+            string fmmdat = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.dat");
+            FileStream fmmdatWiper = File.Open(fmmdat, FileMode.OpenOrCreate);
+            fmmdatWiper.SetLength(0);
+            fmmdatWiper.Close();
+
+            StreamWriter fmmdatWriter = new StreamWriter(fmmdat);
+            foreach (ListViewItem item in listView1.CheckedItems.Cast<ListViewItem>().AsEnumerable().Reverse())
+            {
+                fmmdatWriter.WriteLine(item.SubItems[0].Text);
+            }
+            fmmdatWriter.Close();
+
+            worker.ReportProgress(i);
+
+            //apply mods
+            foreach (ListViewItem item in listView1.CheckedItems.Cast<ListViewItem>().AsEnumerable().Reverse())
+            {
+                // init variables
+                string fmFile = item.SubItems[3].Text;
+                string batFile = Path.Combine(Path.GetDirectoryName(fmFile), "fm_temp.bat");
+
+                try
                 {
-                    // init variables
-                    string fmFile = item.SubItems[3].Text;
-                    string batFile = Path.Combine(Path.GetDirectoryName(fmFile), "fm_temp.bat");
+                    // duplicate .fm as temp .bat installer.
+                    File.Copy(fmFile, batFile, true);
 
-                    try
-                    {
-                        // duplicate .fm as temp .bat installer.
-                        File.Copy(fmFile, batFile, true);
-
-                        // startInfo for installer
-                        ProcessStartInfo startInfo = new ProcessStartInfo();
+                    // startInfo for installer
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
 #if !DEBUG
                         startInfo.CreateNoWindow = true;
                         startInfo.UseShellExecute = false;
                         startInfo.WindowStyle = ProcessWindowStyle.Hidden;
 #endif
-                        startInfo.FileName = batFile;
-                        startInfo.WorkingDirectory = System.IO.Directory.GetCurrentDirectory();
+                    startInfo.FileName = batFile;
+                    startInfo.WorkingDirectory = System.IO.Directory.GetCurrentDirectory();
 
-                        // start installer
-                        using (Process exeProcess = Process.Start(startInfo))
-                        {
-                            exeProcess.WaitForExit();
-                        }
-                    }
-                    catch (Exception ex)
+                    // start installer
+                    using (Process exeProcess = Process.Start(startInfo))
                     {
-                        MessageBox.Show("Error installing " + item.SubItems[0].Text + ".\nPlease consult the #eldorito IRC for help.\n\n\"" + ex.Message + "\"", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        exeProcess.WaitForExit();
                     }
-                    finally
+
+                    i++;
+                    float progress = ((float)i / (float)listView1.CheckedItems.Cast<ListViewItem>().Count()) * 100;
+                    worker.ReportProgress(Convert.ToInt32(progress));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error installing " + item.SubItems[0].Text + ".\nPlease consult the #eldorito IRC for help.\n\n\"" + ex.Message + "\"", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    try
                     {
-                        try
-                        {
-                            // delete installer
-                            File.Delete(batFile);
-                        }
-                        catch {
-                            MessageBox.Show("Whoops. That's not good. Tell Clef, please.");
-                        }
+                        // delete installer
+                        File.Delete(batFile);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Whoops. That's not good. Tell Clef, please.");
                     }
                 }
-
-                percentageLabel.Text = "";
-                MessageBox.Show("Selected mods applied.");
-                button1.Enabled = true;
-                button2.Enabled = true;
-                openGameRoot.Enabled = true;
-                openMods.Enabled = true;
-                button7.Enabled = true;
-                button5.Enabled = true;
-                button6.Enabled = true;
             }
+        }
+
+        private void modInstallWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            percentageLabel.Text = "Installing mods: " + e.ProgressPercentage.ToString() + "%";
+        }
+
+        private void modInstallWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            percentageLabel.Text = "";
+            MessageBox.Show("Selected mods applied.");
+            button1.Enabled = true;
+            button2.Enabled = true;
+            openGameRoot.Enabled = true;
+            openMods.Enabled = true;
+            button7.Enabled = true;
+            button5.Enabled = true;
+            button6.Enabled = true;
         }
 
         private void applyClick(object sender, EventArgs e)
