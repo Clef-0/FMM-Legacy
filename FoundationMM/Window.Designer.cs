@@ -250,7 +250,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Window";
-            this.Text = "Foundation Mod Manager 1.00";
+            this.Text = "Foundation Mod Manager (pre-release build)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Window_FormClosing);
             this.Load += new System.EventHandler(this.Window_Load);
             this.panel1.ResumeLayout(false);
