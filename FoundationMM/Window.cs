@@ -96,6 +96,11 @@ namespace FoundationMM
             else
             {
                 IniFile ini = new IniFile(identifier);
+
+                Form thisForm = (Form)sender;
+                thisForm.Width = Convert.ToInt32(ini.IniReadValue("FMMPrefs", "Width"));
+                thisForm.Height = Convert.ToInt32(ini.IniReadValue("FMMPrefs", "Height"));
+
                 string savedversion = ini.IniReadValue("FMMPrefs", "EDVersion");
                 string actualversion = FileVersionInfo.GetVersionInfo(Path.Combine(Directory.GetCurrentDirectory(), "mtndew.dll")).FileVersion;
 
@@ -578,6 +583,18 @@ namespace FoundationMM
         private void openGameRootButton(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", System.IO.Directory.GetCurrentDirectory());
+        }
+
+        private void Window_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Form thisForm = (Form)sender;
+            string identifier = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini");
+            if (File.Exists(identifier))
+            {
+                IniFile ini = new IniFile(identifier);
+                ini.IniWriteValue("FMMPrefs", "Width", thisForm.Width.ToString());
+                ini.IniWriteValue("FMMPrefs", "Height", thisForm.Height.ToString());
+            }
         }
     }
 }
