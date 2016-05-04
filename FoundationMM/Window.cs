@@ -452,6 +452,8 @@ namespace FoundationMM
                     {
                         listView1.Items.Remove(selected);
                         listView1.Items.Insert(indx - 1, selected);
+                        listView1.Items[indx - 1].Selected = true;
+                        listView1.Select();
                     }
                 }
             }
@@ -472,6 +474,8 @@ namespace FoundationMM
                     {
                         listView1.Items.Remove(selected);
                         listView1.Items.Insert(indx + 1, selected);
+                        listView1.Items[indx + 1].Selected = true;
+                        listView1.Select();
                     }
                 }
             }
