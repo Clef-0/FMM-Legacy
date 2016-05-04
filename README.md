@@ -5,9 +5,8 @@ Mod manager for Halo Online. Please don't download this unless it's past v1.00. 
 ![Screenshot of FMM](https://vgy.me/uljH0n.png)
 
 ### To-do
-* Restructure so less things are in the Window class
-* Add threading so file transfers and installations can take place without locking up the program
 * HaloCafe integration for easy mod downloads
+* Installer output system so the user knows a mod is still installing and that FMM hasn't just frozen
 
 ## Tutorials
 ### Make your mods compatible
