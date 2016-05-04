@@ -1,5 +1,5 @@
 # FMM (Foundation Mod Manager)
-Mod manager for Halo Online. Don't download this expecting all your old mods to work. (hint: they won't)
+Mod manager for Halo Online. Please don't download this unless it's past v1.00. The v0.99 releases are for developers looking to port their mods to the .FM format. If you don't know what that means: it's really not for you.
 
 ![FMM Logo](https://vgy.me/EvUokK.png)
 ![Screenshot of FMM](https://vgy.me/uljH0n.png)
