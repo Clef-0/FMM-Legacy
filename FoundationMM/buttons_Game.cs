@@ -27,7 +27,7 @@ namespace FoundationMM
             DirectoryInfo dir3 = Directory.CreateDirectory(Path.Combine(mapsPath, "fonts"));
 
 
-            if (fileTransferWorker.IsBusy != true || !IsFileLocked(new FileInfo(Path.Combine(mapsPath, "tags.dat"))))
+            if (fileTransferWorker.IsBusy != true || !isFileLocked(new FileInfo(Path.Combine(mapsPath, "tags.dat"))))
             {
                 button1.Enabled = false;
                 button2.Enabled = false;
@@ -73,7 +73,7 @@ namespace FoundationMM
             DirectoryInfo dir3 = Directory.CreateDirectory(Path.Combine(mapsPath, "fonts"));
             if (File.Exists(Path.Combine(mapsPath, "fmmbak", "tags.dat")))
             {
-                if (restoreCleanWorker.IsBusy != true || !IsFileLocked(new FileInfo(Path.Combine(mapsPath, "tags.dat"))))
+                if (restoreCleanWorker.IsBusy != true || !isFileLocked(new FileInfo(Path.Combine(mapsPath, "tags.dat"))))
                 {
                     button1.Enabled = false;
                     button2.Enabled = false;

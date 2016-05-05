@@ -34,7 +34,7 @@ namespace FoundationMM
             foreach (ListViewItem item in listView1.CheckedItems.Cast<ListViewItem>().AsEnumerable().Reverse())
             {
                 // init variables
-                string fmFile = Path.Combine(Directory.GetCurrentDirectory(), "mods", item.SubItems[3].Text);
+                string fmFile = Path.Combine(Directory.GetCurrentDirectory(), "mods", item.SubItems[5].Text);
                 string batFile = Path.Combine(Path.GetDirectoryName(fmFile), "fm_temp.bat");
 
                 try
@@ -68,15 +68,7 @@ namespace FoundationMM
                 }
                 finally
                 {
-                    try
-                    {
-                        // delete installer
-                        File.Delete(batFile);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Whoops. That's not good. Tell Clef, please.");
-                    }
+                    File.Delete(batFile);
                 }
             }
         }

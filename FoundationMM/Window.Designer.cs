@@ -49,6 +49,8 @@
             this.modNumberLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.percentageLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.header_Warnings = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.header_Version = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -63,7 +65,9 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.header_Name,
             this.header_Author,
+            this.header_Version,
             this.header_Description,
+            this.header_Warnings,
             this.header_Location});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
@@ -240,6 +244,15 @@
             this.percentageLabel.Name = "percentageLabel";
             this.percentageLabel.Size = new System.Drawing.Size(0, 17);
             // 
+            // header_Warnings
+            // 
+            this.header_Warnings.Text = "Warnings";
+            this.header_Warnings.Width = 120;
+            // 
+            // header_Version
+            // 
+            this.header_Version.Text = "Version";
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,6 +299,8 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.ToolStripStatusLabel percentageLabel;
         private System.Windows.Forms.Button openGameRoot;
+        private System.Windows.Forms.ColumnHeader header_Warnings;
+        private System.Windows.Forms.ColumnHeader header_Version;
     }
 }
 

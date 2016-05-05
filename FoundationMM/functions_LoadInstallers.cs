@@ -43,10 +43,16 @@ namespace FoundationMM
                     IniFile ini = new IniFile(identifier);
                     string modName = ini.IniReadValue("FMMInfo", "Name");
                     string modAuthor = ini.IniReadValue("FMMInfo", "Author");
+                    string modVersion;
+                    try { modVersion = ini.IniReadValue("FMMInfo", "Version"); }
+                    catch { modVersion = ""; }
+                    string modWarnings;
+                    try { modWarnings = ini.IniReadValue("FMMInfo", "Warnings"); }
+                    catch { modWarnings = ""; }
                     string modDesc = ini.IniReadValue("FMMInfo", "Desc");
 
                     string modLocation = fmfile.Replace(Path.Combine(Directory.GetCurrentDirectory(), "mods\\"), "");
-                    listView1.Items.Add(new ListViewItem(new[] { modName, modAuthor, modDesc, modLocation }));
+                    listView1.Items.Add(new ListViewItem(new[] { modName, modAuthor, modVersion, modDesc, modWarnings, modLocation }));
                 }
             }
         }
