@@ -110,6 +110,7 @@ namespace FoundationMM
                     string mapsPath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "maps");
                     deleteOldBackupWorker.RunWorkerAsync(new string[] { mapsPath });
                     ini.IniWriteValue("FMMPrefs", "EDVersion", actualversion);
+                    showMessageBox("You appear to have updated ElDorito. Please reinstall mods you wish to keep using.");
                 }
             }
 

@@ -73,7 +73,7 @@ namespace FoundationMM
                                 else if (standard_output.StartsWith("FMM_ALERT "))
                                 {
                                     standard_output = standard_output.Trim().Replace("FMM_ALERT ", "");
-                                    textBox1.Invoke(new showMessageBoxCallback(this.showMessageBox), new object[] { standard_output });
+                                    Invoke(new showMessageBoxCallback(this.showMessageBox), new object[] { standard_output });
                                 }
                             }
                         }
