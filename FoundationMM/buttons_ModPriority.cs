@@ -47,5 +47,43 @@ namespace FoundationMM
             }
             catch { }
         }
+
+        private void maxPriority(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listView1.SelectedItems.Count > 0)
+                {
+                    ListViewItem selected = listView1.SelectedItems[0];
+                    int indx = selected.Index;
+                    int totl = listView1.Items.Count;
+                    
+                    listView1.Items.Remove(selected);
+                    listView1.Items.Insert(0, selected);
+                    listView1.Items[0].Selected = true;
+                    listView1.Select();
+                }
+            }
+            catch { }
+        }
+
+        private void minPriority(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listView1.SelectedItems.Count > 0)
+                {
+                    ListViewItem selected = listView1.SelectedItems[0];
+                    int indx = selected.Index;
+                    int totl = listView1.Items.Count;
+
+                    listView1.Items.Remove(selected);
+                    listView1.Items.Insert(totl - 1, selected);
+                    listView1.Items[totl - 1].Selected = true;
+                    listView1.Select();
+                }
+            }
+            catch { }
+        }
     }
 }

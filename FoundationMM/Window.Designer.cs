@@ -32,9 +32,13 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.header_Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.header_Author = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.header_Version = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.header_Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.header_Warnings = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.header_Location = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.devModeGroupBox = new System.Windows.Forms.GroupBox();
+            this.toggleFileRestoration = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -43,15 +47,17 @@
             this.openGameRoot = new System.Windows.Forms.Button();
             this.openMods = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.modNumberLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.percentageLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.header_Warnings = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.header_Version = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.toggleCmdWindows = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.devModeGroupBox.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -90,10 +96,19 @@
             this.header_Author.Text = "Author";
             this.header_Author.Width = 90;
             // 
+            // header_Version
+            // 
+            this.header_Version.Text = "Version";
+            // 
             // header_Description
             // 
             this.header_Description.Text = "Description";
             this.header_Description.Width = 200;
+            // 
+            // header_Warnings
+            // 
+            this.header_Warnings.Text = "Warnings";
+            this.header_Warnings.Width = 120;
             // 
             // header_Location
             // 
@@ -102,6 +117,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.devModeGroupBox);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
@@ -110,6 +126,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(158, 419);
             this.panel1.TabIndex = 1;
+            // 
+            // devModeGroupBox
+            // 
+            this.devModeGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.devModeGroupBox.Controls.Add(this.toggleCmdWindows);
+            this.devModeGroupBox.Controls.Add(this.toggleFileRestoration);
+            this.devModeGroupBox.Location = new System.Drawing.Point(3, 227);
+            this.devModeGroupBox.Name = "devModeGroupBox";
+            this.devModeGroupBox.Size = new System.Drawing.Size(152, 77);
+            this.devModeGroupBox.TabIndex = 4;
+            this.devModeGroupBox.TabStop = false;
+            this.devModeGroupBox.Text = "Developer Mode";
+            this.devModeGroupBox.Visible = false;
+            // 
+            // toggleFileRestoration
+            // 
+            this.toggleFileRestoration.Location = new System.Drawing.Point(6, 19);
+            this.toggleFileRestoration.Name = "toggleFileRestoration";
+            this.toggleFileRestoration.Size = new System.Drawing.Size(140, 23);
+            this.toggleFileRestoration.TabIndex = 2;
+            this.toggleFileRestoration.Text = "Disable File Restoration";
+            this.toggleFileRestoration.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -187,6 +225,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
@@ -196,11 +236,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Mod Priority";
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(123, 48);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(23, 23);
+            this.button4.TabIndex = 3;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.minPriority);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(123, 19);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(23, 23);
+            this.button3.TabIndex = 2;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.maxPriority);
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(6, 48);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(140, 23);
+            this.button2.Size = new System.Drawing.Size(111, 23);
             this.button2.TabIndex = 1;
             this.button2.Text = "Decrease Priority";
             this.button2.UseVisualStyleBackColor = true;
@@ -210,7 +268,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(6, 19);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 23);
+            this.button1.Size = new System.Drawing.Size(111, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Increase Priority";
             this.button1.UseVisualStyleBackColor = true;
@@ -244,14 +302,15 @@
             this.percentageLabel.Name = "percentageLabel";
             this.percentageLabel.Size = new System.Drawing.Size(0, 17);
             // 
-            // header_Warnings
+            // toggleCmdWindows
             // 
-            this.header_Warnings.Text = "Warnings";
-            this.header_Warnings.Width = 120;
-            // 
-            // header_Version
-            // 
-            this.header_Version.Text = "Version";
+            this.toggleCmdWindows.Location = new System.Drawing.Point(6, 48);
+            this.toggleCmdWindows.Name = "toggleCmdWindows";
+            this.toggleCmdWindows.Size = new System.Drawing.Size(140, 23);
+            this.toggleCmdWindows.TabIndex = 3;
+            this.toggleCmdWindows.Text = "Enable CMD Windows";
+            this.toggleCmdWindows.UseVisualStyleBackColor = true;
+            this.toggleCmdWindows.Click += new System.EventHandler(this.toggleCmdWindows_Click);
             // 
             // Window
             // 
@@ -267,6 +326,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Window_FormClosing);
             this.Load += new System.EventHandler(this.Window_Load);
             this.panel1.ResumeLayout(false);
+            this.devModeGroupBox.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -301,6 +361,11 @@
         private System.Windows.Forms.Button openGameRoot;
         private System.Windows.Forms.ColumnHeader header_Warnings;
         private System.Windows.Forms.ColumnHeader header_Version;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox devModeGroupBox;
+        private System.Windows.Forms.Button toggleFileRestoration;
+        private System.Windows.Forms.Button toggleCmdWindows;
     }
 }
 

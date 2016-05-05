@@ -36,6 +36,7 @@ namespace FoundationMM
                 };
 
         List<string> locatedFMMInstallers = new List<string>();
+        
 
         public Window()
         {
@@ -94,6 +95,10 @@ namespace FoundationMM
                 Form thisForm = (Form)sender;
                 thisForm.Width = Convert.ToInt32(ini.IniReadValue("FMMPrefs", "Width"));
                 thisForm.Height = Convert.ToInt32(ini.IniReadValue("FMMPrefs", "Height"));
+                if (ini.IniReadValue("FMMPrefs", "DevMode").ToLower() == "true")
+                {
+                    devModeGroupBox.Visible = true;
+                }
 
                 string savedversion = ini.IniReadValue("FMMPrefs", "EDVersion");
                 string actualversion = FileVersionInfo.GetVersionInfo(Path.Combine(Directory.GetCurrentDirectory(), "mtndew.dll")).FileVersion;

@@ -8,6 +8,8 @@ namespace FoundationMM
 {
     public partial class Window : Form
     {
+        bool restoreFiles = true;
+
         private void fileTransferWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             string[] args = (string[])e.Argument;
@@ -39,7 +41,7 @@ namespace FoundationMM
             {
                 foreach (string file in files)
                 {
-                    if ((worker.CancellationPending == true))
+                    if ((worker.CancellationPending == true) || (restoreFiles == false))
                     {
                         e.Cancel = true;
                         break;
@@ -57,7 +59,15 @@ namespace FoundationMM
 
         private void fileTransferWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            percentageLabel.Text = "Preparing clean files: " + e.ProgressPercentage.ToString() + "%";
+            string mapsPath = Path.Combine(Directory.GetCurrentDirectory(), "maps");
+            if (isRestoringVsBackingUp == true)
+            {
+                percentageLabel.Text = "Restoring clean files: " + e.ProgressPercentage.ToString() + "%";
+            }
+            else
+            {
+                percentageLabel.Text = "Preparing a backup: " + e.ProgressPercentage.ToString() + "%";
+            }
         }
 
         private void fileTransferWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -78,6 +88,8 @@ namespace FoundationMM
                 {
                     button1.Enabled = false;
                     button2.Enabled = false;
+                    button3.Enabled = false;
+                    button4.Enabled = false;
                     openGameRoot.Enabled = false;
                     openMods.Enabled = false;
                     button7.Enabled = false;

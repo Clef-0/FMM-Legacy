@@ -9,6 +9,8 @@ namespace FoundationMM
 {
     public partial class Window : Form
     {
+        bool showInstallers = false;
+
         private void modInstallWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
@@ -44,11 +46,12 @@ namespace FoundationMM
 
                     // startInfo for installer
                     ProcessStartInfo startInfo = new ProcessStartInfo();
-#if !DEBUG
-                    startInfo.CreateNoWindow = true;
-                    startInfo.UseShellExecute = false;
-                    startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-#endif
+                    if (showInstallers == false)
+                    {
+                        startInfo.CreateNoWindow = true;
+                        startInfo.UseShellExecute = false;
+                        startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    }
                     startInfo.FileName = batFile;
                     startInfo.WorkingDirectory = System.IO.Directory.GetCurrentDirectory();
 
@@ -64,6 +67,7 @@ namespace FoundationMM
                 }
                 catch (Exception ex)
                 {
+                    FlashWindowEx(this);
                     MessageBox.Show("Error installing " + item.SubItems[0].Text + ".\nPlease consult the #eldorito IRC for help.\n\n\"" + ex.Message + "\"", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
@@ -81,9 +85,12 @@ namespace FoundationMM
         private void modInstallWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             percentageLabel.Text = "";
+            FlashWindowEx(this);
             MessageBox.Show("Selected mods applied.");
             button1.Enabled = true;
             button2.Enabled = true;
+            button3.Enabled = true;
+            button4.Enabled = true;
             openGameRoot.Enabled = true;
             openMods.Enabled = true;
             button7.Enabled = true;

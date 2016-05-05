@@ -7,6 +7,8 @@ namespace FoundationMM
 {
     public partial class Window : Form
     {
+        bool isRestoringVsBackingUp = false;
+
         private void launchDewritoClick(object sender, EventArgs e)
         {
             Process.Start(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "eldorado.exe"), "-launcher");
@@ -26,11 +28,17 @@ namespace FoundationMM
             DirectoryInfo dir2 = Directory.CreateDirectory(Path.Combine(mapsPath, "fmmbak", "fonts"));
             DirectoryInfo dir3 = Directory.CreateDirectory(Path.Combine(mapsPath, "fonts"));
 
+            if (File.Exists(Path.Combine(mapsPath, "fmmbak", "tags.dat")))
+            {
+                isRestoringVsBackingUp = true;
+            }
 
             if (fileTransferWorker.IsBusy != true || !isFileLocked(new FileInfo(Path.Combine(mapsPath, "tags.dat"))))
             {
                 button1.Enabled = false;
                 button2.Enabled = false;
+                button3.Enabled = false;
+                button4.Enabled = false;
                 openGameRoot.Enabled = false;
                 openMods.Enabled = false;
                 button7.Enabled = false;
