@@ -67,6 +67,9 @@
     <Compile Include="functions_LoadInstallers.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="functions_OutputPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="worker_DeleteBackup.cs">
       <SubType>Form</SubType>
     </Compile>

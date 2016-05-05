@@ -72,11 +72,7 @@ namespace FoundationMM
 
         private void fileTransferWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if ((e.Cancelled == true))
-            {
-                percentageLabel.Text = "Canceled!";
-            }
-            else if (!(e.Error == null))
+            if (!(e.Error == null))
             {
                 percentageLabel.Text = ("Error: " + e.Error.Message);
             }
@@ -95,6 +91,7 @@ namespace FoundationMM
                     button7.Enabled = false;
                     button5.Enabled = false;
                     button6.Enabled = false;
+                    outputPanel.Visible = true;
                     modInstallWorker.RunWorkerAsync(new string[] { mapsPath });
                 }
             }

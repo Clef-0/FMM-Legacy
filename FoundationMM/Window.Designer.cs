@@ -56,12 +56,15 @@
             this.modNumberLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.percentageLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.outputPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.devModeGroupBox.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.outputPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView1
@@ -313,11 +316,37 @@
             this.percentageLabel.Name = "percentageLabel";
             this.percentageLabel.Size = new System.Drawing.Size(0, 17);
             // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Location = new System.Drawing.Point(3, 3);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(513, 220);
+            this.textBox1.TabIndex = 3;
+            this.textBox1.Text = "Installing...";
+            // 
+            // outputPanel
+            // 
+            this.outputPanel.Controls.Add(this.textBox1);
+            this.outputPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.outputPanel.Location = new System.Drawing.Point(0, 193);
+            this.outputPanel.Name = "outputPanel";
+            this.outputPanel.Size = new System.Drawing.Size(519, 226);
+            this.outputPanel.TabIndex = 4;
+            this.outputPanel.Visible = false;
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 441);
+            this.Controls.Add(this.outputPanel);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
@@ -333,6 +362,8 @@
             this.groupBox1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.outputPanel.ResumeLayout(false);
+            this.outputPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,6 +398,8 @@
         private System.Windows.Forms.GroupBox devModeGroupBox;
         private System.Windows.Forms.Button toggleFileRestoration;
         private System.Windows.Forms.Button toggleCmdWindows;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Panel outputPanel;
     }
 }
 

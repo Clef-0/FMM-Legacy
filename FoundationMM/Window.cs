@@ -50,6 +50,8 @@ namespace FoundationMM
 
         private void Window_Load(object sender, EventArgs e)
         {
+            outputPanel.Dock = DockStyle.Fill;
+
             deleteOldBackupWorker.WorkerSupportsCancellation = true;
             deleteOldBackupWorker.DoWork += new DoWorkEventHandler(deleteOldBackup_DoWork);
 
@@ -116,7 +118,6 @@ namespace FoundationMM
             lookForFMMInstallers();
             addFMMInstallersToList();
             checkFMMInstallerOrder();
-
             
             int modCount = listView1.Items.Count;
             if (modCount == 1)

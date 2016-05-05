@@ -50,6 +50,7 @@ namespace FoundationMM
                     {
                         startInfo.CreateNoWindow = true;
                         startInfo.UseShellExecute = false;
+                        startInfo.RedirectStandardOutput = true;
                         startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     }
                     startInfo.FileName = batFile;
@@ -58,6 +59,25 @@ namespace FoundationMM
                     // start installer
                     using (Process exeProcess = Process.Start(startInfo))
                     {
+                        if (startInfo.RedirectStandardOutput == true)
+                        {
+                            string standard_output;
+                            while (!exeProcess.StandardOutput.EndOfStream)
+                            {
+                                standard_output = exeProcess.StandardOutput.ReadLine();
+                                if (standard_output.StartsWith("FMM_OUTPUT "))
+                                {
+                                    standard_output = standard_output.Trim().Replace("FMM_OUTPUT ", "");
+                                    textBox1.Invoke(new appendNewOutputCallback(this.appendNewOutput), new object[] { standard_output });
+                                }
+                                else if (standard_output.StartsWith("FMM_ALERT "))
+                                {
+                                    standard_output = standard_output.Trim().Replace("FMM_ALERT ", "");
+                                    textBox1.Invoke(new showMessageBoxCallback(this.showMessageBox), new object[] { standard_output });
+                                }
+                            }
+                        }
+
                         exeProcess.WaitForExit();
                     }
 
@@ -96,6 +116,7 @@ namespace FoundationMM
             button7.Enabled = true;
             button5.Enabled = true;
             button6.Enabled = true;
+            outputPanel.Visible = false;
         }
     }
 }
