@@ -40,7 +40,7 @@ namespace FoundationMM
             }
         }
 
-        public bool IsFileLocked(FileInfo file)
+        private bool isFileLocked(FileInfo file)
         {
             FileStream stream = null;
 

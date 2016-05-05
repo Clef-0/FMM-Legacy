@@ -9,7 +9,7 @@ namespace FoundationMM
 {
     public partial class Window : Form
     {
-        public void modInstallWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void modInstallWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
             int i = 0;
