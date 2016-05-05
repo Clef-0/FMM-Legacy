@@ -38,6 +38,7 @@
             this.header_Location = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
             this.devModeGroupBox = new System.Windows.Forms.GroupBox();
+            this.toggleCmdWindows = new System.Windows.Forms.Button();
             this.toggleFileRestoration = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button7 = new System.Windows.Forms.Button();
@@ -55,7 +56,6 @@
             this.modNumberLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.percentageLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toggleCmdWindows = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.devModeGroupBox.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -140,6 +140,16 @@
             this.devModeGroupBox.Text = "Developer Mode";
             this.devModeGroupBox.Visible = false;
             // 
+            // toggleCmdWindows
+            // 
+            this.toggleCmdWindows.Location = new System.Drawing.Point(6, 48);
+            this.toggleCmdWindows.Name = "toggleCmdWindows";
+            this.toggleCmdWindows.Size = new System.Drawing.Size(140, 23);
+            this.toggleCmdWindows.TabIndex = 3;
+            this.toggleCmdWindows.Text = "Enable CMD Windows";
+            this.toggleCmdWindows.UseVisualStyleBackColor = true;
+            this.toggleCmdWindows.Click += new System.EventHandler(this.toggleCmdWindows_Click);
+            // 
             // toggleFileRestoration
             // 
             this.toggleFileRestoration.Location = new System.Drawing.Point(6, 19);
@@ -148,6 +158,7 @@
             this.toggleFileRestoration.TabIndex = 2;
             this.toggleFileRestoration.Text = "Disable File Restoration";
             this.toggleFileRestoration.UseVisualStyleBackColor = true;
+            this.toggleFileRestoration.Click += new System.EventHandler(this.toggleFileRestoration_Click);
             // 
             // groupBox3
             // 
@@ -301,16 +312,6 @@
             // 
             this.percentageLabel.Name = "percentageLabel";
             this.percentageLabel.Size = new System.Drawing.Size(0, 17);
-            // 
-            // toggleCmdWindows
-            // 
-            this.toggleCmdWindows.Location = new System.Drawing.Point(6, 48);
-            this.toggleCmdWindows.Name = "toggleCmdWindows";
-            this.toggleCmdWindows.Size = new System.Drawing.Size(140, 23);
-            this.toggleCmdWindows.TabIndex = 3;
-            this.toggleCmdWindows.Text = "Enable CMD Windows";
-            this.toggleCmdWindows.UseVisualStyleBackColor = true;
-            this.toggleCmdWindows.Click += new System.EventHandler(this.toggleCmdWindows_Click);
             // 
             // Window
             // 
