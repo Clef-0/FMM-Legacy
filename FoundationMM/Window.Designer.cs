@@ -86,7 +86,7 @@
             this.listView1.Name = "listView1";
             this.listView1.ShowItemToolTips = true;
             this.listView1.Size = new System.Drawing.Size(519, 419);
-            this.listView1.TabIndex = 0;
+            this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
@@ -149,7 +149,7 @@
             this.toggleCmdWindows.Location = new System.Drawing.Point(6, 48);
             this.toggleCmdWindows.Name = "toggleCmdWindows";
             this.toggleCmdWindows.Size = new System.Drawing.Size(140, 23);
-            this.toggleCmdWindows.TabIndex = 3;
+            this.toggleCmdWindows.TabIndex = 9;
             this.toggleCmdWindows.Text = "Enable CMD Windows";
             this.toggleCmdWindows.UseVisualStyleBackColor = true;
             this.toggleCmdWindows.Click += new System.EventHandler(this.toggleCmdWindows_Click);
@@ -159,7 +159,7 @@
             this.toggleFileRestoration.Location = new System.Drawing.Point(6, 19);
             this.toggleFileRestoration.Name = "toggleFileRestoration";
             this.toggleFileRestoration.Size = new System.Drawing.Size(140, 23);
-            this.toggleFileRestoration.TabIndex = 2;
+            this.toggleFileRestoration.TabIndex = 8;
             this.toggleFileRestoration.Text = "Disable File Restoration";
             this.toggleFileRestoration.UseVisualStyleBackColor = true;
             this.toggleFileRestoration.Click += new System.EventHandler(this.toggleFileRestoration_Click);
@@ -182,7 +182,7 @@
             this.button7.Location = new System.Drawing.Point(6, 19);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(140, 23);
-            this.button7.TabIndex = 2;
+            this.button7.TabIndex = 10;
             this.button7.Text = "Restore Unmodded Files";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.cleanClick);
@@ -192,7 +192,7 @@
             this.button5.Location = new System.Drawing.Point(6, 48);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(140, 23);
-            this.button5.TabIndex = 1;
+            this.button5.TabIndex = 11;
             this.button5.Text = "Apply Selected Mods";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.applyClick);
@@ -202,7 +202,7 @@
             this.button6.Location = new System.Drawing.Point(6, 77);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(140, 23);
-            this.button6.TabIndex = 0;
+            this.button6.TabIndex = 12;
             this.button6.Text = "Launch ElDewrito";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.launchDewritoClick);
@@ -223,7 +223,7 @@
             this.openGameRoot.Location = new System.Drawing.Point(6, 19);
             this.openGameRoot.Name = "openGameRoot";
             this.openGameRoot.Size = new System.Drawing.Size(140, 23);
-            this.openGameRoot.TabIndex = 1;
+            this.openGameRoot.TabIndex = 6;
             this.openGameRoot.Text = "Open Game Folder";
             this.openGameRoot.UseVisualStyleBackColor = true;
             this.openGameRoot.Click += new System.EventHandler(this.openGameRootButton);
@@ -233,7 +233,7 @@
             this.openMods.Location = new System.Drawing.Point(6, 48);
             this.openMods.Name = "openMods";
             this.openMods.Size = new System.Drawing.Size(140, 23);
-            this.openMods.TabIndex = 0;
+            this.openMods.TabIndex = 7;
             this.openMods.Text = "Open Mods Folder";
             this.openMods.UseVisualStyleBackColor = true;
             this.openMods.Click += new System.EventHandler(this.openModsButton);
@@ -257,7 +257,7 @@
             this.button4.Location = new System.Drawing.Point(123, 48);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(23, 23);
-            this.button4.TabIndex = 3;
+            this.button4.TabIndex = 5;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.minPriority);
             // 
@@ -267,7 +267,7 @@
             this.button3.Location = new System.Drawing.Point(123, 19);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(23, 23);
-            this.button3.TabIndex = 2;
+            this.button3.TabIndex = 3;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.maxPriority);
             // 
@@ -276,7 +276,7 @@
             this.button2.Location = new System.Drawing.Point(6, 48);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(111, 23);
-            this.button2.TabIndex = 1;
+            this.button2.TabIndex = 4;
             this.button2.Text = "Decrease Priority";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.downClick);
@@ -286,7 +286,7 @@
             this.button1.Location = new System.Drawing.Point(6, 19);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 23);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 2;
             this.button1.Text = "Increase Priority";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.upClick);
@@ -323,7 +323,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(515, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(546, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // percentageLabel
@@ -343,7 +343,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(513, 220);
-            this.textBox1.TabIndex = 3;
+            this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Installing...";
             // 
             // outputPanel
@@ -367,7 +367,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Window";
-            this.Text = "Foundation Mod Manager v1.00 Gemini";
+            this.Text = "Foundation Mod Manager v1.10 Headlong";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Window_FormClosing);
             this.Load += new System.EventHandler(this.Window_Load);
             this.panel1.ResumeLayout(false);
