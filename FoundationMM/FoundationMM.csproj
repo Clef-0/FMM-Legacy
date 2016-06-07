@@ -58,6 +58,9 @@
     <Compile Include="buttons_Game.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="buttons_Status.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="buttons_ModPriority.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +124,7 @@
     <Content Include="9BsSR1t.ico" />
     <Content Include="9BsSR1t2.ico" />
     <Content Include="FMM.ico" />
+    <None Include="Resources\ico_refresh.png" />
     <None Include="Resources\ico_down.png" />
     <None Include="Resources\ico_up.png" />
   </ItemGroup>

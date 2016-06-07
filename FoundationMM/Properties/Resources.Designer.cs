@@ -73,6 +73,16 @@ namespace FoundationMM.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ico_refresh {
+            get {
+                object obj = ResourceManager.GetObject("ico_refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ico_up {
             get {
                 object obj = ResourceManager.GetObject("ico_up", resourceCulture);

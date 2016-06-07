@@ -53,6 +53,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.refreshMods = new System.Windows.Forms.ToolStripSplitButton();
             this.modNumberLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.percentageLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -210,7 +211,7 @@
             // 
             this.groupBox2.Controls.Add(this.openGameRoot);
             this.groupBox2.Controls.Add(this.openMods);
-            this.groupBox2.Location = new System.Drawing.Point(3, 87);
+            this.groupBox2.Location = new System.Drawing.Point(3, 86);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(152, 77);
             this.groupBox2.TabIndex = 2;
@@ -245,7 +246,7 @@
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(152, 78);
+            this.groupBox1.Size = new System.Drawing.Size(152, 77);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Mod Priority";
@@ -293,6 +294,7 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.refreshMods,
             this.modNumberLabel,
             this.toolStripStatusLabel1,
             this.percentageLabel});
@@ -300,6 +302,17 @@
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(677, 22);
             this.statusStrip1.TabIndex = 2;
+            // 
+            // refreshMods
+            // 
+            this.refreshMods.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.refreshMods.DropDownButtonWidth = 0;
+            this.refreshMods.Image = global::FoundationMM.Properties.Resources.ico_refresh;
+            this.refreshMods.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.refreshMods.Name = "refreshMods";
+            this.refreshMods.Size = new System.Drawing.Size(21, 20);
+            this.refreshMods.Text = "toolStripSplitButton1";
+            this.refreshMods.Click += new System.EventHandler(this.refreshModsClick);
             // 
             // modNumberLabel
             // 
@@ -310,7 +323,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(567, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(515, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // percentageLabel
@@ -402,6 +415,7 @@
         private System.Windows.Forms.Button toggleCmdWindows;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel outputPanel;
+        private System.Windows.Forms.ToolStripSplitButton refreshMods;
     }
 }
 
