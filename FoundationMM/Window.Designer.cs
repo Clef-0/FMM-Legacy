@@ -139,7 +139,7 @@
             this.devModeGroupBox.Location = new System.Drawing.Point(3, 227);
             this.devModeGroupBox.Name = "devModeGroupBox";
             this.devModeGroupBox.Size = new System.Drawing.Size(152, 77);
-            this.devModeGroupBox.TabIndex = 4;
+            this.devModeGroupBox.TabIndex = 2;
             this.devModeGroupBox.TabStop = false;
             this.devModeGroupBox.Text = "Developer Mode";
             this.devModeGroupBox.Visible = false;
@@ -214,7 +214,7 @@
             this.groupBox2.Location = new System.Drawing.Point(3, 86);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(152, 77);
-            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Directories";
             // 
