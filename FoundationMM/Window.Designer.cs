@@ -252,6 +252,7 @@
             // 
             // button4
             // 
+            this.button4.Image = global::FoundationMM.Properties.Resources.ico_down;
             this.button4.Location = new System.Drawing.Point(123, 48);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(23, 23);
@@ -261,6 +262,7 @@
             // 
             // button3
             // 
+            this.button3.Image = global::FoundationMM.Properties.Resources.ico_up;
             this.button3.Location = new System.Drawing.Point(123, 19);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(23, 23);
