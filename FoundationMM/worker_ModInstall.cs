@@ -113,7 +113,6 @@ namespace FoundationMM
             button4.Enabled = true;
             openGameRoot.Enabled = true;
             openMods.Enabled = true;
-            button7.Enabled = true;
             button5.Enabled = true;
             button6.Enabled = true;
             outputPanel.Visible = false;
