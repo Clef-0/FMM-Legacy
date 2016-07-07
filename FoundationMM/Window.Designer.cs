@@ -69,6 +69,7 @@
             // 
             // listView1
             // 
+            this.listView1.AllowDrop = true;
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.CheckBoxes = true;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -135,7 +136,7 @@
             this.devModeGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.devModeGroupBox.Controls.Add(this.toggleCmdWindows);
             this.devModeGroupBox.Controls.Add(this.toggleFileRestoration);
-            this.devModeGroupBox.Location = new System.Drawing.Point(3, 227);
+            this.devModeGroupBox.Location = new System.Drawing.Point(3, 256);
             this.devModeGroupBox.Name = "devModeGroupBox";
             this.devModeGroupBox.Size = new System.Drawing.Size(152, 77);
             this.devModeGroupBox.TabIndex = 2;

@@ -27,6 +27,9 @@ namespace FoundationMM
                 DirectoryInfo dir1 = Directory.CreateDirectory(Path.Combine(mapsPath, "fmmbak"));
                 DirectoryInfo dir2 = Directory.CreateDirectory(Path.Combine(mapsPath, "fmmbak", "fonts"));
                 DirectoryInfo dir3 = Directory.CreateDirectory(Path.Combine(mapsPath, "fonts"));
+
+                isRestoringVsBackingUp = false;
+
                 if (File.Exists(Path.Combine(mapsPath, "fmmbak", "tags.dat")))
                 {
                     if (restoreCleanWorker.IsBusy != true || !isFileLocked(new FileInfo(Path.Combine(mapsPath, "tags.dat"))))
@@ -56,6 +59,8 @@ namespace FoundationMM
                 DirectoryInfo dir1 = Directory.CreateDirectory(Path.Combine(mapsPath, "fmmbak"));
                 DirectoryInfo dir2 = Directory.CreateDirectory(Path.Combine(mapsPath, "fmmbak", "fonts"));
                 DirectoryInfo dir3 = Directory.CreateDirectory(Path.Combine(mapsPath, "fonts"));
+
+                isRestoringVsBackingUp = false;
 
                 if (File.Exists(Path.Combine(mapsPath, "fmmbak", "tags.dat")))
                 {

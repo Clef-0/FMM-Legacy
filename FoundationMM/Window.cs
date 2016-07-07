@@ -50,6 +50,8 @@ namespace FoundationMM
 
         private void Window_Load(object sender, EventArgs e)
         {
+            listView1.AllowDrop = true;
+
             outputPanel.Dock = DockStyle.Fill;
 
             deleteOldBackupWorker.WorkerSupportsCancellation = true;
