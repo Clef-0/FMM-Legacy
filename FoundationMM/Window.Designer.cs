@@ -47,17 +47,17 @@
             this.openGameRoot = new System.Windows.Forms.Button();
             this.openMods = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.refreshMods = new System.Windows.Forms.ToolStripSplitButton();
             this.modNumberLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.percentageLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.outputPanel = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.refreshMods = new System.Windows.Forms.ToolStripSplitButton();
             this.panel1.SuspendLayout();
             this.devModeGroupBox.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -239,6 +239,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Mod Priority";
             // 
+            // button4
+            // 
+            this.button4.Image = global::FoundationMM.Properties.Resources.ico_down;
+            this.button4.Location = new System.Drawing.Point(123, 48);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(23, 23);
+            this.button4.TabIndex = 5;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.minPriority);
+            // 
+            // button3
+            // 
+            this.button3.Image = global::FoundationMM.Properties.Resources.ico_up;
+            this.button3.Location = new System.Drawing.Point(123, 19);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(23, 23);
+            this.button3.TabIndex = 3;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.maxPriority);
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(6, 48);
@@ -270,6 +290,17 @@
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(677, 22);
             this.statusStrip1.TabIndex = 2;
+            // 
+            // refreshMods
+            // 
+            this.refreshMods.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.refreshMods.DropDownButtonWidth = 0;
+            this.refreshMods.Image = global::FoundationMM.Properties.Resources.ico_refresh;
+            this.refreshMods.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.refreshMods.Name = "refreshMods";
+            this.refreshMods.Size = new System.Drawing.Size(21, 20);
+            this.refreshMods.Text = "toolStripSplitButton1";
+            this.refreshMods.Click += new System.EventHandler(this.refreshModsClick);
             // 
             // modNumberLabel
             // 
@@ -312,37 +343,6 @@
             this.outputPanel.Size = new System.Drawing.Size(519, 226);
             this.outputPanel.TabIndex = 4;
             this.outputPanel.Visible = false;
-            // 
-            // button4
-            // 
-            this.button4.Image = global::FoundationMM.Properties.Resources.ico_down;
-            this.button4.Location = new System.Drawing.Point(123, 48);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(23, 23);
-            this.button4.TabIndex = 5;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.minPriority);
-            // 
-            // button3
-            // 
-            this.button3.Image = global::FoundationMM.Properties.Resources.ico_up;
-            this.button3.Location = new System.Drawing.Point(123, 19);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(23, 23);
-            this.button3.TabIndex = 3;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.maxPriority);
-            // 
-            // refreshMods
-            // 
-            this.refreshMods.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.refreshMods.DropDownButtonWidth = 0;
-            this.refreshMods.Image = global::FoundationMM.Properties.Resources.ico_refresh;
-            this.refreshMods.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.refreshMods.Name = "refreshMods";
-            this.refreshMods.Size = new System.Drawing.Size(21, 20);
-            this.refreshMods.Text = "toolStripSplitButton1";
-            this.refreshMods.Click += new System.EventHandler(this.refreshModsClick);
             // 
             // Window
             // 

@@ -133,6 +133,20 @@ namespace FoundationMM
 
         private void Window_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (button1.Enabled == false)
+            {
+                DialogResult dialogResult = MessageBox.Show("Installation in progress, and cancelling may leave critical files corrupt or missing.\n\nAre you sure you want to cancel?", null, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                
+                if (dialogResult == DialogResult.Yes)
+                {
+                    e.Cancel = false;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+
             Form thisForm = (Form)sender;
             string identifier = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini");
             if (File.Exists(identifier))
