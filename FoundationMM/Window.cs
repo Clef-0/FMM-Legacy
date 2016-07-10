@@ -121,6 +121,7 @@ namespace FoundationMM
             lookForFMMInstallers();
             addFMMInstallersToList();
             checkFMMInstallerOrder();
+            populateInstallerDLList();
             
             int modCount = listView1.Items.Count;
             if (modCount == 1)
