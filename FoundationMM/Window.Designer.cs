@@ -374,6 +374,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(677, 419);
             this.tabControl1.TabIndex = 5;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -402,7 +403,6 @@
             // 
             this.listView2.AllowDrop = true;
             this.listView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView2.CheckBoxes = true;
             this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -478,6 +478,7 @@
             this.button16.TabIndex = 2;
             this.button16.Text = "Download Selected Mod";
             this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // Window
             // 

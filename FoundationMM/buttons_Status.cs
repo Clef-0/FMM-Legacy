@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace FoundationMM
@@ -7,21 +8,28 @@ namespace FoundationMM
     {
         private void refreshModsClick(object sender, EventArgs e)
         {
-            listView1.Items.Clear();
-            locatedFMMInstallers.Clear();
-
-            lookForFMMInstallers();
-            addFMMInstallersToList();
-            checkFMMInstallerOrder();
-
-            int modCount = listView1.Items.Count;
-            if (modCount == 1)
+            if (enabledTab == 0)
             {
-                modNumberLabel.Text = "1 mod available";
+                listView1.Items.Clear();
+                locatedFMMInstallers.Clear();
+                lookForFMMInstallers();
+                addFMMInstallersToList();
+                checkFMMInstallerOrder();
+
+                int modCount = listView1.Items.Count;
+                if (modCount == 1)
+                {
+                    modNumberLabel.Text = "1 mod available";
+                }
+                else
+                {
+                    modNumberLabel.Text = modCount + " mods available";
+                }
             }
             else
             {
-                modNumberLabel.Text = modCount + " mods available";
+                listView2.Items.Clear();
+                dlFilesWorker.RunWorkerAsync(new string[] { Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods") });
             }
         }
     }

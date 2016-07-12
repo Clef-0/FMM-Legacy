@@ -47,6 +47,8 @@ namespace FoundationMM
         BackgroundWorker fileTransferWorker = new BackgroundWorker();
         BackgroundWorker modInstallWorker = new BackgroundWorker();
         BackgroundWorker restoreCleanWorker = new BackgroundWorker();
+        BackgroundWorker dlFilesWorker = new BackgroundWorker();
+        BackgroundWorker dlModWorker = new BackgroundWorker();
 
         private void Window_Load(object sender, EventArgs e)
         {
@@ -74,6 +76,16 @@ namespace FoundationMM
             restoreCleanWorker.DoWork += new DoWorkEventHandler(restoreCleanWorker_DoWork);
             restoreCleanWorker.ProgressChanged += new ProgressChangedEventHandler(restoreCleanWorker_ProgressChanged);
             restoreCleanWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(restoreCleanWorker_RunWorkerCompleted);
+
+            dlFilesWorker.WorkerSupportsCancellation = true;
+            dlFilesWorker.WorkerReportsProgress = true;
+            dlFilesWorker.DoWork += new DoWorkEventHandler(dlFilesWorker_DoWork);
+            dlFilesWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(dlFilesWorker_RunWorkerCompleted);
+
+            dlModWorker.WorkerSupportsCancellation = true;
+            dlModWorker.WorkerReportsProgress = true;
+            dlModWorker.DoWork += new DoWorkEventHandler(dlModWorker_DoWork);
+            dlModWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(dlModWorker_RunWorkerCompleted);
 
             DirectoryInfo dir0 = Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "mods", "tagmods"));
 #if !DEBUG
@@ -121,8 +133,9 @@ namespace FoundationMM
             lookForFMMInstallers();
             addFMMInstallersToList();
             checkFMMInstallerOrder();
-            populateInstallerDLList();
             
+            dlFilesWorker.RunWorkerAsync(new string[] { Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods") });
+
             int modCount = listView1.Items.Count;
             if (modCount == 1)
             {
@@ -157,6 +170,31 @@ namespace FoundationMM
                 IniFile ini = new IniFile(identifier);
                 ini.IniWriteValue("FMMPrefs", "Width", thisForm.Width.ToString());
                 ini.IniWriteValue("FMMPrefs", "Height", thisForm.Height.ToString());
+            }
+        }
+
+        int enabledTab = 0;
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            enabledTab = tabControl1.SelectedIndex;
+            int modCount = 0;
+            if (enabledTab == 0)
+            {
+                modCount = listView1.Items.Count;
+            }
+            else
+            {
+                modCount = listView2.Items.Count;
+            }
+
+            if (modCount == 1)
+            {
+                modNumberLabel.Text = "1 mod available";
+            }
+            else
+            {
+                modNumberLabel.Text = modCount + " mods available";
             }
         }
     }

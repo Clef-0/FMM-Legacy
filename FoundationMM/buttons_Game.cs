@@ -102,5 +102,16 @@ namespace FoundationMM
             return false;
         }
         
+        private void button16_Click(object sender, EventArgs e)
+        {
+            tabControl1.Enabled = false;
+
+            string remLocation = "https://github.com/Clef-0/FMM-Mods/trunk/" + listView2.SelectedItems[0].SubItems[5].Text;
+            Debug.WriteLine(remLocation);
+            string locLocation = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods", listView2.SelectedItems[0].SubItems[5].Text.Replace("/","\\"));
+            Debug.WriteLine(locLocation);
+
+            dlModWorker.RunWorkerAsync(new string[] { remLocation, locLocation });
+        }
     }
 }
