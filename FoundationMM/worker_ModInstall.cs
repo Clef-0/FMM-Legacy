@@ -116,6 +116,7 @@ namespace FoundationMM
             button5.Enabled = true;
             button6.Enabled = true;
             outputPanel.Visible = false;
+            tabControl1.Enabled = true;
         }
     }
 }

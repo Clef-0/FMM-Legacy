@@ -80,6 +80,8 @@ namespace FoundationMM
             {
                 string mapsPath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "maps");
 
+                tabControl1.Enabled = true;
+
                 if (modInstallWorker.IsBusy != true)
                 {
                     button1.Enabled = false;
@@ -91,6 +93,7 @@ namespace FoundationMM
                     button5.Enabled = false;
                     button6.Enabled = false;
                     outputPanel.Visible = true;
+                    tabControl1.Enabled = false;
                     modInstallWorker.RunWorkerAsync(new string[] { mapsPath });
                 }
             }

@@ -59,6 +59,7 @@ namespace FoundationMM
                 openMods.Enabled = true;
                 button5.Enabled = true;
                 button6.Enabled = true;
+                tabControl1.Enabled = true;
             }
         }
     }

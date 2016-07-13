@@ -77,6 +77,7 @@ namespace FoundationMM
                     openMods.Enabled = false;
                     button5.Enabled = false;
                     button6.Enabled = false;
+                    tabControl1.Enabled = false;
                     fileTransferWorker.RunWorkerAsync(new string[] { mapsPath });
                 }
             }
