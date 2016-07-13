@@ -24,7 +24,11 @@ namespace FoundationMM
             Debug.WriteLine(remLocation + "  &&  " + locLocation);
             
                 BackgroundWorker worker = sender as BackgroundWorker;
-
+            Directory.CreateDirectory(locLocation);
+            if (Directory.Exists(Path.Combine(locLocation, ".svn")))
+            {
+                client.CleanUp(locLocation);
+            }
                 percentageLabel.Text = "Download in progress...";
                 client.CheckOut(new Uri(remLocation), locLocation);
         }
@@ -38,6 +42,7 @@ namespace FoundationMM
             else
             {
                 percentageLabel.Text = "";
+                MessageBox.Show("Selected mod downloaded.\nRefresh your \"My Mods\" window to install it.");
                 tabControl1.Enabled = true;
             }
         }
