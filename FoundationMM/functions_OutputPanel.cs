@@ -22,5 +22,17 @@ namespace FoundationMM
             FlashWindowEx(this);
             MessageBox.Show(output);
         }
+
+        public delegate void appendNewLogCallback(string output);
+
+        private void _appendNewLog(string output)
+        {
+            debugTextBox.AppendText(output + Environment.NewLine);
+        }
+        
+        private void Log(string output)
+        {
+            //debugTextBox.Invoke(new appendNewLogCallback(this._appendNewLog), new object[] { output });
+        }
     }
 }

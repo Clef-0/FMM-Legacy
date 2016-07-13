@@ -52,12 +52,18 @@ namespace FoundationMM
 
         private void Window_Load(object sender, EventArgs e)
         {
+            tabControl1.TabPages.Remove(tabPage3);
             listView1.AllowDrop = true;
 
             outputPanel.Dock = DockStyle.Fill;
 
             deleteOldBackupWorker.WorkerSupportsCancellation = true;
             deleteOldBackupWorker.DoWork += new DoWorkEventHandler(deleteOldBackup_DoWork);
+
+            dlModWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(dlModWorker_RunWorkerCompleted);
+            dlModWorker.WorkerSupportsCancellation = true;
+            dlModWorker.WorkerReportsProgress = true;
+            dlModWorker.DoWork += new DoWorkEventHandler(dlModWorker_DoWork);
 
             fileTransferWorker.WorkerSupportsCancellation = true;
             fileTransferWorker.WorkerReportsProgress = true;
@@ -82,10 +88,6 @@ namespace FoundationMM
             dlFilesWorker.DoWork += new DoWorkEventHandler(dlFilesWorker_DoWork);
             dlFilesWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(dlFilesWorker_RunWorkerCompleted);
 
-            dlModWorker.WorkerSupportsCancellation = true;
-            dlModWorker.WorkerReportsProgress = true;
-            dlModWorker.DoWork += new DoWorkEventHandler(dlModWorker_DoWork);
-            dlModWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(dlModWorker_RunWorkerCompleted);
 
             DirectoryInfo dir0 = Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "mods", "tagmods"));
 #if !DEBUG
@@ -130,12 +132,17 @@ namespace FoundationMM
 
 #endif
 
+            Log("Looking for installers...");
             lookForFMMInstallers();
+            Log("Adding installers to list...");
             addFMMInstallersToList();
+            Log("Ordering installers as saved...");
             checkFMMInstallerOrder();
-            
+
+            Log("Downloading mod list...");
             dlFilesWorker.RunWorkerAsync(new string[] { Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods") });
 
+            Log("Counting available mods...");
             int modCount = listView1.Items.Count;
             if (modCount == 1)
             {
@@ -181,11 +188,20 @@ namespace FoundationMM
             int modCount = 0;
             if (enabledTab == 0)
             {
+                refreshMods.Visible = true;
+                modNumberLabel.Visible = true;
                 modCount = listView1.Items.Count;
             }
-            else
+            else if (enabledTab == 1)
             {
+                refreshMods.Visible = true;
+                modNumberLabel.Visible = true;
                 modCount = listView2.Items.Count;
+            }
+            else if (enabledTab == 2)
+            {
+                refreshMods.Visible = false;
+                modNumberLabel.Visible = false;
             }
 
             if (modCount == 1)
