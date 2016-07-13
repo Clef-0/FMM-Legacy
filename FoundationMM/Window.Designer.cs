@@ -103,7 +103,7 @@
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.ShowItemToolTips = true;
-            this.listView1.Size = new System.Drawing.Size(511, 167);
+            this.listView1.Size = new System.Drawing.Size(511, 393);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -378,8 +378,8 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.listView1);
             this.tabPage1.Controls.Add(this.outputPanel);
+            this.tabPage1.Controls.Add(this.listView1);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
