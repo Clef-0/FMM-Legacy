@@ -31,6 +31,27 @@ namespace FoundationMM
             }
                 percentageLabel.Text = "Download in progress...";
                 client.CheckOut(new Uri(remLocation), locLocation);
+
+            exeProcessDirectory(locLocation);
+        }
+
+        private void exeProcessDirectory(string targetDirectory)
+        {
+            string[] fileEntries = Directory.GetFiles(targetDirectory);
+            foreach (string fileName in fileEntries)
+                exeProcessFile(fileName);
+
+            string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
+            foreach (string subdirectory in subdirectoryEntries)
+                exeProcessDirectory(subdirectory);
+        }
+
+        private void exeProcessFile(string path)
+        {
+            if (Path.GetExtension(path) == ".exe")
+            {
+                locatedFMMInstallers.Add(path);
+            }
         }
 
         private void dlModWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

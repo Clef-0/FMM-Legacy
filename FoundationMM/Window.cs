@@ -213,5 +213,31 @@ namespace FoundationMM
                 modNumberLabel.Text = modCount + " mods available";
             }
         }
+
+        bool listViewDND = false;
+        private void listView1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (listViewDND) { return; }
+            if (((Control.ModifierKeys & Keys.Shift) != 0))
+            {
+                listViewDND = true;
+                e.NewValue = e.CurrentValue;
+                if (listView1.CheckedItems.Count == listView1.Items.Count)
+                {
+                    foreach (ListViewItem item in listView1.Items)
+                    {
+                        item.Checked = false;
+                    }
+                }
+                else
+                {
+                    foreach (ListViewItem item in listView1.Items)
+                    {
+                        item.Checked = true;
+                    }
+                }
+            }
+            listViewDND = false;
+        }
     }
 }
