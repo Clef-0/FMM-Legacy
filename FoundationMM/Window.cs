@@ -48,6 +48,7 @@ namespace FoundationMM
         BackgroundWorker modInstallWorker = new BackgroundWorker();
         BackgroundWorker restoreCleanWorker = new BackgroundWorker();
         BackgroundWorker dlFilesWorker = new BackgroundWorker();
+        BackgroundWorker dlModWorkerStarter = new BackgroundWorker();
         BackgroundWorker dlModWorker = new BackgroundWorker();
 
         private void Window_Load(object sender, EventArgs e)
@@ -59,6 +60,11 @@ namespace FoundationMM
 
             deleteOldBackupWorker.WorkerSupportsCancellation = true;
             deleteOldBackupWorker.DoWork += new DoWorkEventHandler(deleteOldBackup_DoWork);
+
+            dlModWorkerStarter.WorkerSupportsCancellation = true;
+            dlModWorkerStarter.WorkerReportsProgress = true;
+            dlModWorkerStarter.DoWork += new DoWorkEventHandler(dlModWorkerStarter_DoWork);
+            dlModWorkerStarter.RunWorkerCompleted += new RunWorkerCompletedEventHandler(dlModWorkerStarter_RunWorkerCompleted);
 
             dlModWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(dlModWorker_RunWorkerCompleted);
             dlModWorker.WorkerSupportsCancellation = true;

@@ -408,6 +408,7 @@
             // 
             this.listView2.AllowDrop = true;
             this.listView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listView2.CheckBoxes = true;
             this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -481,7 +482,7 @@
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(140, 23);
             this.button16.TabIndex = 2;
-            this.button16.Text = "Download Selected Mod";
+            this.button16.Text = "Download Selected Mods";
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 

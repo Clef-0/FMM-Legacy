@@ -1,5 +1,6 @@
 ﻿using SharpSvn;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -11,6 +12,31 @@ namespace FoundationMM
 {
     public partial class Window : Form
     {
+        private void dlModWorkerStarter_DoWork(object sender, DoWorkEventArgs e)
+        {
+            List<ListViewItem> mods = (List<ListViewItem>)e.Argument;
+
+            foreach (ListViewItem item in mods)
+            {
+                tabControl1.Invoke((MethodInvoker)delegate { tabControl1.Enabled = false; });
+                string remLocation = "https://github.com/Clef-0/FMM-Mods/trunk/" + item.SubItems[5].Text;
+                Debug.WriteLine(remLocation);
+                string locLocation = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods", item.SubItems[5].Text.Replace("/", "\\"));
+                Debug.WriteLine(locLocation);
+                dlModWorker.RunWorkerAsync(new string[] { remLocation, locLocation });
+                do {
+                    Thread.Sleep(100);
+                } while (dlModWorker.IsBusy);
+            }
+            tabControl1.Invoke((MethodInvoker)delegate { tabControl1.Enabled = true; });
+        }
+
+        private void dlModWorkerStarter_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("Selected mods downloaded.\nRefresh your \"My Mods\" window.");
+            tabControl1.Invoke((MethodInvoker)delegate { tabControl1.Enabled = true; });
+        }
+
         private void dlModWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             SvnClient client = new SvnClient();
@@ -22,8 +48,12 @@ namespace FoundationMM
 
             locLocation = Path.GetDirectoryName(locLocation);
             Debug.WriteLine(remLocation + "  &&  " + locLocation);
-            
-                BackgroundWorker worker = sender as BackgroundWorker;
+
+            BackgroundWorker worker = sender as BackgroundWorker;
+            if (Directory.Exists(locLocation))
+            {
+                Directory.Delete(locLocation, true);
+            }
             Directory.CreateDirectory(locLocation);
             if (Directory.Exists(Path.Combine(locLocation, ".svn")))
             {
@@ -32,7 +62,7 @@ namespace FoundationMM
                 percentageLabel.Text = "Download in progress...";
                 client.CheckOut(new Uri(remLocation), locLocation);
 
-            exeProcessDirectory(locLocation);
+            //exeProcessDirectory(locLocation);
         }
 
         private void exeProcessDirectory(string targetDirectory)
@@ -63,8 +93,6 @@ namespace FoundationMM
             else
             {
                 percentageLabel.Text = "";
-                MessageBox.Show("Selected mod downloaded.\nRefresh your \"My Mods\" window to install it.");
-                tabControl1.Enabled = true;
             }
         }
     }
