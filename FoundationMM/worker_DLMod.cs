@@ -103,13 +103,6 @@ namespace FoundationMM
 
                 // startInfo for extractor
                 ProcessStartInfo startInfo = new ProcessStartInfo();
-                if (showInstallers == false)
-                {
-                    startInfo.CreateNoWindow = true;
-                    startInfo.UseShellExecute = false;
-                    startInfo.RedirectStandardOutput = true;
-                    startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                }
                 startInfo.FileName = Path.Combine(System.IO.Directory.GetCurrentDirectory(), Path.GetFileNameWithoutExtension(path) + ".exe");
                 startInfo.WorkingDirectory = System.IO.Directory.GetCurrentDirectory();
 
