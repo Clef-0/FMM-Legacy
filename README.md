@@ -2,7 +2,7 @@
 Mod manager for Halo Online.
 
 ![FMM Logo](https://vgy.me/EvUokK.png)
-![Screenshot of FMM](https://vgy.me/2GswO9.png)
+![Screenshot of FMM](http://i.imgur.com/bpAHlRE.png)
 
 ### To-do
 * HaloCafe integration for easy mod downloads
