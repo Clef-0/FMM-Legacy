@@ -117,6 +117,7 @@ namespace FoundationMM
             button6.Enabled = true;
             outputPanel.Visible = false;
             tabControl1.Enabled = true;
+            statusStrip1.Invoke((MethodInvoker)delegate { refreshMods.Enabled = true; });
         }
     }
 }

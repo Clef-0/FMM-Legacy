@@ -42,6 +42,7 @@ namespace FoundationMM
                         openMods.Enabled = false;
                         button5.Enabled = false;
                         button6.Enabled = false;
+                        statusStrip1.Invoke((MethodInvoker)delegate { refreshMods.Enabled = false; });
                         restoreCleanWorker.RunWorkerAsync(new string[] { mapsPath });
                     }
                 }
@@ -80,6 +81,7 @@ namespace FoundationMM
                     button5.Enabled = false;
                     button6.Enabled = false;
                     tabControl1.Enabled = false;
+                    statusStrip1.Invoke((MethodInvoker)delegate { refreshMods.Enabled = false; });
                     fileTransferWorker.RunWorkerAsync(new string[] { mapsPath });
                 }
             }

@@ -60,6 +60,7 @@ namespace FoundationMM
                 button5.Enabled = true;
                 button6.Enabled = true;
                 tabControl1.Enabled = true;
+                statusStrip1.Invoke((MethodInvoker)delegate { refreshMods.Enabled = true; });
             }
         }
     }

@@ -103,6 +103,7 @@
     <Compile Include="functions_OutputPanel.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="class_ListViewItemComparer.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

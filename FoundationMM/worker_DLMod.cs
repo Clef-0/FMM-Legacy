@@ -14,6 +14,7 @@ namespace FoundationMM
     {
         private void dlModWorkerStarter_DoWork(object sender, DoWorkEventArgs e)
         {
+            statusStrip1.Invoke((MethodInvoker)delegate { refreshMods.Enabled = false; });
             BackgroundWorker worker = sender as BackgroundWorker;
 
             List<ListViewItem> mods = (List<ListViewItem>)e.Argument;
@@ -37,7 +38,6 @@ namespace FoundationMM
                 float progress = ((float)i / (float)mods.Count()) * 100;
                 worker.ReportProgress(Convert.ToInt32(progress));
             }
-            tabControl1.Invoke((MethodInvoker)delegate { tabControl1.Enabled = true; });
         }
 
         private void dlModWorkerStarter_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -50,6 +50,7 @@ namespace FoundationMM
             MessageBox.Show("Selected mods downloaded.\nRefresh your \"My Mods\" window.");
             tabControl1.Invoke((MethodInvoker)delegate { tabControl1.Enabled = true; });
             statusStrip1.Invoke((MethodInvoker)delegate { percentageLabel.Text = ""; });
+            statusStrip1.Invoke((MethodInvoker)delegate { refreshMods.Enabled = true; });
         }
 
         private void dlModWorker_DoWork(object sender, DoWorkEventArgs e)

@@ -272,5 +272,57 @@ namespace FoundationMM
             }
             listView2DND = false;
         }
+
+        private int sortColumn1 = -1;
+
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column != sortColumn1)
+            {
+                sortColumn1 = e.Column;
+                listView1.Sorting = SortOrder.Ascending;
+            }
+            else
+            {
+                if (listView1.Sorting == SortOrder.Ascending)
+                {
+                    listView1.Sorting = SortOrder.Descending;
+                }
+                else
+                {
+                    listView1.Sorting = SortOrder.Ascending;
+                }
+            }
+            
+            listView1.Sort();
+            listView1.ListViewItemSorter = new ListViewItemComparer(e.Column, listView1.Sorting);
+            checkFMMInstallerOrder();
+        }
+
+        private int sortColumn2 = -1;
+
+        private void listView2_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column != sortColumn2)
+            {
+                sortColumn2 = e.Column;
+                listView2.Sorting = SortOrder.Ascending;
+            }
+            else
+            {
+                if (listView2.Sorting == SortOrder.Ascending)
+                {
+                    listView2.Sorting = SortOrder.Descending;
+                }
+                else
+                {
+                    listView2.Sorting = SortOrder.Ascending;
+                }
+            }
+
+            listView2.Sort();
+            listView2.ListViewItemSorter = new ListViewItemComparer(e.Column, listView2.Sorting);
+            checkFMMInstallerOrder();
+        }
     }
 }
