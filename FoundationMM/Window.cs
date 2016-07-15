@@ -64,6 +64,7 @@ namespace FoundationMM
             dlModWorkerStarter.WorkerSupportsCancellation = true;
             dlModWorkerStarter.WorkerReportsProgress = true;
             dlModWorkerStarter.DoWork += new DoWorkEventHandler(dlModWorkerStarter_DoWork);
+            dlModWorkerStarter.ProgressChanged += new ProgressChangedEventHandler(dlModWorkerStarter_ProgressChanged);
             dlModWorkerStarter.RunWorkerCompleted += new RunWorkerCompletedEventHandler(dlModWorkerStarter_RunWorkerCompleted);
 
             dlModWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(dlModWorker_RunWorkerCompleted);
@@ -220,13 +221,13 @@ namespace FoundationMM
             }
         }
 
-        bool listViewDND = false;
+        bool listView1DND = false;
         private void listView1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (listViewDND) { return; }
+            if (listView1DND) { return; }
             if (((Control.ModifierKeys & Keys.Shift) != 0))
             {
-                listViewDND = true;
+                listView1DND = true;
                 e.NewValue = e.CurrentValue;
                 if (listView1.CheckedItems.Count == listView1.Items.Count)
                 {
@@ -243,7 +244,33 @@ namespace FoundationMM
                     }
                 }
             }
-            listViewDND = false;
+            listView1DND = false;
+        }
+
+        bool listView2DND = false;
+        private void listView2_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (listView2DND) { return; }
+            if (((Control.ModifierKeys & Keys.Shift) != 0))
+            {
+                listView2DND = true;
+                e.NewValue = e.CurrentValue;
+                if (listView2.CheckedItems.Count == listView2.Items.Count)
+                {
+                    foreach (ListViewItem item in listView2.Items)
+                    {
+                        item.Checked = false;
+                    }
+                }
+                else
+                {
+                    foreach (ListViewItem item in listView2.Items)
+                    {
+                        item.Checked = true;
+                    }
+                }
+            }
+            listView2DND = false;
         }
     }
 }

@@ -14,7 +14,12 @@ namespace FoundationMM
     {
         private void dlModWorkerStarter_DoWork(object sender, DoWorkEventArgs e)
         {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
             List<ListViewItem> mods = (List<ListViewItem>)e.Argument;
+
+            int i = 0;
+            worker.ReportProgress(i);
 
             foreach (ListViewItem item in mods)
             {
@@ -27,14 +32,24 @@ namespace FoundationMM
                 do {
                     Thread.Sleep(100);
                 } while (dlModWorker.IsBusy);
+
+                i++;
+                float progress = ((float)i / (float)mods.Count()) * 100;
+                worker.ReportProgress(Convert.ToInt32(progress));
             }
             tabControl1.Invoke((MethodInvoker)delegate { tabControl1.Enabled = true; });
+        }
+
+        private void dlModWorkerStarter_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            percentageLabel.Text = "Downloading mods: " + e.ProgressPercentage.ToString() + "%";
         }
 
         private void dlModWorkerStarter_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Selected mods downloaded.\nRefresh your \"My Mods\" window.");
             tabControl1.Invoke((MethodInvoker)delegate { tabControl1.Enabled = true; });
+            statusStrip1.Invoke((MethodInvoker)delegate { percentageLabel.Text = ""; });
         }
 
         private void dlModWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -59,28 +74,28 @@ namespace FoundationMM
             {
                 client.CleanUp(locLocation);
             }
-                percentageLabel.Text = "Download in progress...";
-                client.CheckOut(new Uri(remLocation), locLocation);
 
-            //exeProcessDirectory(locLocation);
+            client.CheckOut(new Uri(remLocation), locLocation);
+
+            //fexeProcessDirectory(locLocation);
         }
 
-        private void exeProcessDirectory(string targetDirectory)
+        private void fexeProcessDirectory(string targetDirectory)
         {
             string[] fileEntries = Directory.GetFiles(targetDirectory);
             foreach (string fileName in fileEntries)
-                exeProcessFile(fileName);
+                fexeProcessFile(fileName);
 
             string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
             foreach (string subdirectory in subdirectoryEntries)
-                exeProcessDirectory(subdirectory);
+                fexeProcessDirectory(subdirectory);
         }
 
-        private void exeProcessFile(string path)
+        private void fexeProcessFile(string path)
         {
-            if (Path.GetExtension(path) == ".exe")
+            if (Path.GetExtension(path) == ".fexe")
             {
-                locatedFMMInstallers.Add(path);
+                // TODO // move to root and execute
             }
         }
 
