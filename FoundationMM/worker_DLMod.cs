@@ -77,7 +77,7 @@ namespace FoundationMM
 
             client.CheckOut(new Uri(remLocation), locLocation);
 
-            //fexeProcessDirectory(locLocation);
+            fexeProcessDirectory(locLocation); // aka the "thanks a lot, flatgrass" function
         }
 
         private void fexeProcessDirectory(string targetDirectory)
@@ -95,7 +95,29 @@ namespace FoundationMM
         {
             if (Path.GetExtension(path) == ".fexe")
             {
-                // TODO // move to root and execute
+                if (File.Exists(Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path) + ".ini")))
+                {
+                    File.Delete(Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path) + ".ini"));
+                }
+                File.Move(path, Path.Combine(System.IO.Directory.GetCurrentDirectory(), Path.GetFileNameWithoutExtension(path) + ".exe"));
+
+                // startInfo for extractor
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                if (showInstallers == false)
+                {
+                    startInfo.CreateNoWindow = true;
+                    startInfo.UseShellExecute = false;
+                    startInfo.RedirectStandardOutput = true;
+                    startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                }
+                startInfo.FileName = Path.Combine(System.IO.Directory.GetCurrentDirectory(), Path.GetFileNameWithoutExtension(path) + ".exe");
+                startInfo.WorkingDirectory = System.IO.Directory.GetCurrentDirectory();
+
+                // start extractor
+                using (Process exeProcess = Process.Start(startInfo))
+                {
+                    exeProcess.WaitForExit();
+                }
             }
         }
 
