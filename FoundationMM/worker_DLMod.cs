@@ -99,17 +99,26 @@ namespace FoundationMM
                 {
                     File.Delete(Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path) + ".ini"));
                 }
+                if (File.Exists(Path.Combine(System.IO.Directory.GetCurrentDirectory(), Path.GetFileNameWithoutExtension(path) + ".exe")))
+                {
+                    File.Delete(Path.Combine(System.IO.Directory.GetCurrentDirectory(), Path.GetFileNameWithoutExtension(path) + ".exe"));
+                }
                 File.Move(path, Path.Combine(System.IO.Directory.GetCurrentDirectory(), Path.GetFileNameWithoutExtension(path) + ".exe"));
 
                 // startInfo for extractor
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.FileName = Path.Combine(System.IO.Directory.GetCurrentDirectory(), Path.GetFileNameWithoutExtension(path) + ".exe");
                 startInfo.WorkingDirectory = System.IO.Directory.GetCurrentDirectory();
+                startInfo.Arguments = "-y -gm2";
 
                 // start extractor
                 using (Process exeProcess = Process.Start(startInfo))
                 {
                     exeProcess.WaitForExit();
+                }
+                if (File.Exists(Path.Combine(System.IO.Directory.GetCurrentDirectory(), Path.GetFileNameWithoutExtension(path) + ".exe")))
+                {
+                    File.Delete(Path.Combine(System.IO.Directory.GetCurrentDirectory(), Path.GetFileNameWithoutExtension(path) + ".exe"));
                 }
             }
         }
