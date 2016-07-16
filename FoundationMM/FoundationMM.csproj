@@ -91,7 +91,7 @@
     <Compile Include="buttons_Status.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="buttons_ModPriority.cs">
+    <Compile Include="buttons_Mods.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="functions_FlashTaskbar.cs">

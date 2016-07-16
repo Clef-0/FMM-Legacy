@@ -47,6 +47,7 @@
             this.openGameRoot = new System.Windows.Forms.Button();
             this.openMods = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -106,7 +107,7 @@
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.ShowItemToolTips = true;
-            this.listView1.Size = new System.Drawing.Size(511, 393);
+            this.listView1.Size = new System.Drawing.Size(623, 463);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -150,9 +151,9 @@
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(511, 0);
+            this.panel1.Location = new System.Drawing.Point(623, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(158, 393);
+            this.panel1.Size = new System.Drawing.Size(158, 463);
             this.panel1.TabIndex = 1;
             // 
             // devModeGroupBox
@@ -160,7 +161,7 @@
             this.devModeGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.devModeGroupBox.Controls.Add(this.toggleCmdWindows);
             this.devModeGroupBox.Controls.Add(this.toggleFileRestoration);
-            this.devModeGroupBox.Location = new System.Drawing.Point(3, 230);
+            this.devModeGroupBox.Location = new System.Drawing.Point(3, 300);
             this.devModeGroupBox.Name = "devModeGroupBox";
             this.devModeGroupBox.Size = new System.Drawing.Size(152, 77);
             this.devModeGroupBox.TabIndex = 2;
@@ -193,7 +194,7 @@
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.button5);
             this.groupBox3.Controls.Add(this.button6);
-            this.groupBox3.Location = new System.Drawing.Point(3, 313);
+            this.groupBox3.Location = new System.Drawing.Point(3, 383);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(152, 77);
             this.groupBox3.TabIndex = 3;
@@ -206,7 +207,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(140, 23);
             this.button5.TabIndex = 11;
-            this.button5.Text = "Apply Selected Mods";
+            this.button5.Text = "Apply Checked Mods";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.applyClick);
             // 
@@ -224,7 +225,7 @@
             // 
             this.groupBox2.Controls.Add(this.openGameRoot);
             this.groupBox2.Controls.Add(this.openMods);
-            this.groupBox2.Location = new System.Drawing.Point(3, 86);
+            this.groupBox2.Location = new System.Drawing.Point(3, 115);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(152, 77);
             this.groupBox2.TabIndex = 1;
@@ -253,16 +254,27 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(152, 77);
+            this.groupBox1.Size = new System.Drawing.Size(152, 106);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Mod Priority";
+            this.groupBox1.Text = "Mods";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(6, 77);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(140, 23);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "Delete Selected Mod";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button4
             // 
@@ -311,9 +323,9 @@
             this.modNumberLabel,
             this.toolStripStatusLabel1,
             this.percentageLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 419);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 489);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(677, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(789, 22);
             this.statusStrip1.TabIndex = 2;
             // 
             // refreshMods
@@ -336,7 +348,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(546, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(658, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // percentageLabel
@@ -355,7 +367,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(505, 220);
+            this.textBox1.Size = new System.Drawing.Size(617, 220);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Installing...";
             // 
@@ -363,9 +375,9 @@
             // 
             this.outputPanel.Controls.Add(this.textBox1);
             this.outputPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.outputPanel.Location = new System.Drawing.Point(0, 167);
+            this.outputPanel.Location = new System.Drawing.Point(0, 237);
             this.outputPanel.Name = "outputPanel";
-            this.outputPanel.Size = new System.Drawing.Size(511, 226);
+            this.outputPanel.Size = new System.Drawing.Size(623, 226);
             this.outputPanel.TabIndex = 4;
             this.outputPanel.Visible = false;
             // 
@@ -378,7 +390,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(677, 419);
+            this.tabControl1.Size = new System.Drawing.Size(789, 489);
             this.tabControl1.TabIndex = 5;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -389,7 +401,7 @@
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(669, 393);
+            this.tabPage1.Size = new System.Drawing.Size(781, 463);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "My Mods";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -485,7 +497,7 @@
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(140, 23);
             this.button16.TabIndex = 2;
-            this.button16.Text = "Download Selected Mods";
+            this.button16.Text = "Download Checked Mods";
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
@@ -515,12 +527,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(677, 441);
+            this.ClientSize = new System.Drawing.Size(789, 511);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Window";
-            this.Text = "Foundation Mod Manager v1.10 Headlong";
+            this.Text = "Foundation Mod Manager v1.11 Headlong";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Window_FormClosing);
             this.Load += new System.EventHandler(this.Window_Load);
             this.panel1.ResumeLayout(false);
@@ -590,6 +602,7 @@
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TextBox debugTextBox;
+        private System.Windows.Forms.Button button7;
     }
 }
 

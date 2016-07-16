@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace FoundationMM
@@ -56,6 +58,7 @@ namespace FoundationMM
             {
                 if (listView1.SelectedItems.Count > 0)
                 {
+                    listView1.Sorting = SortOrder.None;
                     ListViewItem selected = listView1.SelectedItems[0];
                     int indx = selected.Index;
                     int totl = listView1.Items.Count;
@@ -75,6 +78,7 @@ namespace FoundationMM
             {
                 if (listView1.SelectedItems.Count > 0)
                 {
+                    listView1.Sorting = SortOrder.None;
                     ListViewItem selected = listView1.SelectedItems[0];
                     int indx = selected.Index;
                     int totl = listView1.Items.Count;
@@ -86,6 +90,28 @@ namespace FoundationMM
                 }
             }
             catch { }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 1)
+            {
+                Directory.Delete(Path.Combine(Directory.GetCurrentDirectory(), "mods", Path.GetDirectoryName(listView1.SelectedItems[0].SubItems[5].Text)), true);
+            }
+            refreshModsClick(null, null);
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            ListView.CheckedListViewItemCollection oitems = listView2.CheckedItems;
+            List<ListViewItem> items = new List<ListViewItem>();
+
+            foreach (ListViewItem item in oitems)
+            {
+                items.Add(item);
+            }
+
+            dlModWorkerStarter.RunWorkerAsync(items);
         }
     }
 }

@@ -106,18 +106,5 @@ namespace FoundationMM
             }
             return false;
         }
-
-        private void button16_Click(object sender, EventArgs e)
-        {
-            ListView.CheckedListViewItemCollection oitems = listView2.CheckedItems;
-            List<ListViewItem> items = new List<ListViewItem>();
-            
-            foreach(ListViewItem item in oitems)
-            {
-                items.Add(item);
-            }
-
-            dlModWorkerStarter.RunWorkerAsync(items);
-        }
     }
 }
