@@ -11,6 +11,7 @@ namespace FoundationMM
             {
                 if (listView1.SelectedItems.Count > 0)
                 {
+                    listView1.Sorting = SortOrder.None;
                     ListViewItem selected = listView1.SelectedItems[0];
                     int indx = selected.Index;
 
@@ -32,6 +33,7 @@ namespace FoundationMM
             {
                 if (listView1.SelectedItems.Count > 0)
                 {
+                    listView1.Sorting = SortOrder.None;
                     ListViewItem selected = listView1.SelectedItems[0];
                     int indx = selected.Index;
                     int totl = listView1.Items.Count;
