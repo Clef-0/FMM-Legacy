@@ -96,9 +96,14 @@ namespace FoundationMM
         {
             if (listView1.SelectedItems.Count == 1)
             {
-                Directory.Delete(Path.Combine(Directory.GetCurrentDirectory(), "mods", Path.GetDirectoryName(listView1.SelectedItems[0].SubItems[5].Text)), true);
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete \"" + listView1.SelectedItems[0].SubItems[0].Text + "\"? This cannot be undone.\nThis will not uninstall the mod until a new mod configuration is applied.", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Directory.Delete(Path.Combine(Directory.GetCurrentDirectory(), "mods", Path.GetDirectoryName(listView1.SelectedItems[0].SubItems[5].Text)), true);
+                    refreshModsClick(null, null);
+                }
             }
-            refreshModsClick(null, null);
         }
 
         private void button16_Click(object sender, EventArgs e)

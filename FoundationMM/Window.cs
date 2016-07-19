@@ -57,6 +57,16 @@ namespace FoundationMM
             listView1.AllowDrop = true;
 
             outputPanel.Dock = DockStyle.Fill;
+            
+            System.Windows.Forms.ToolTip incPriToolTip = new System.Windows.Forms.ToolTip();
+            incPriToolTip.SetToolTip(this.button1, "Higher priority installs a mod later.\nThis means it can overwrite changes from other mods.");
+            System.Windows.Forms.ToolTip topPriToolTip = new System.Windows.Forms.ToolTip();
+            topPriToolTip.SetToolTip(this.button3, "Higher priority installs a mod later.\nThis means it can overwrite changes from other mods.");
+            System.Windows.Forms.ToolTip decPriToolTip = new System.Windows.Forms.ToolTip();
+            decPriToolTip.SetToolTip(this.button2, "Lower priority installs a mod earlier.\nThis means other mods can overwrite its changes.");
+            System.Windows.Forms.ToolTip botPriToolTip = new System.Windows.Forms.ToolTip();
+            botPriToolTip.SetToolTip(this.button2, "Lower priority installs a mod earlier.\nThis means other mods can overwrite its changes.");
+
 
             deleteOldBackupWorker.WorkerSupportsCancellation = true;
             deleteOldBackupWorker.DoWork += new DoWorkEventHandler(deleteOldBackup_DoWork);
@@ -163,9 +173,9 @@ namespace FoundationMM
 
         private void Window_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (button1.Enabled == false)
+            if (tabControl1.Enabled == false)
             {
-                DialogResult dialogResult = MessageBox.Show("Installation in progress, and cancelling may leave critical files corrupt or missing.\n\nAre you sure you want to cancel?", null, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult dialogResult = MessageBox.Show("FMM is working, and cancelling may leave critical files corrupt or missing.\n\nAre you sure you want to cancel?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 
                 if (dialogResult == DialogResult.Yes)
                 {

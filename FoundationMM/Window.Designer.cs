@@ -412,7 +412,7 @@
             this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(669, 393);
+            this.tabPage2.Size = new System.Drawing.Size(781, 463);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Downloadable Mods";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -435,8 +435,8 @@
             this.listView2.MultiSelect = false;
             this.listView2.Name = "listView2";
             this.listView2.ShowItemToolTips = true;
-            this.listView2.Size = new System.Drawing.Size(511, 393);
-            this.listView2.TabIndex = 3;
+            this.listView2.Size = new System.Drawing.Size(623, 463);
+            this.listView2.TabIndex = 1;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
             this.listView2.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView2_ColumnClick);
@@ -476,9 +476,9 @@
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.Controls.Add(this.groupBox7);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(511, 0);
+            this.panel2.Location = new System.Drawing.Point(623, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(158, 393);
+            this.panel2.Size = new System.Drawing.Size(158, 463);
             this.panel2.TabIndex = 2;
             // 
             // groupBox7
@@ -506,7 +506,7 @@
             this.tabPage3.Controls.Add(this.debugTextBox);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(669, 393);
+            this.tabPage3.Size = new System.Drawing.Size(781, 463);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Debug Log wip";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -520,7 +520,7 @@
             this.debugTextBox.Name = "debugTextBox";
             this.debugTextBox.ReadOnly = true;
             this.debugTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.debugTextBox.Size = new System.Drawing.Size(669, 393);
+            this.debugTextBox.Size = new System.Drawing.Size(781, 463);
             this.debugTextBox.TabIndex = 1;
             // 
             // Window
