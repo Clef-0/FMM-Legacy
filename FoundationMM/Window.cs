@@ -58,25 +58,25 @@ namespace FoundationMM
 
             outputPanel.Dock = DockStyle.Fill;
             
-            ToolTip incPriToolTip = new System.Windows.Forms.ToolTip();
+            ToolTip incPriToolTip = new ToolTip();
             incPriToolTip.SetToolTip(this.button1, "Higher priority installs a mod later.\nThis means it can overwrite changes from other mods.");
-            ToolTip topPriToolTip = new System.Windows.Forms.ToolTip();
+            ToolTip topPriToolTip = new ToolTip();
             topPriToolTip.SetToolTip(this.button3, "Higher priority installs a mod later.\nThis means it can overwrite changes from other mods.");
-            ToolTip decPriToolTip = new System.Windows.Forms.ToolTip();
+            ToolTip decPriToolTip = new ToolTip();
             decPriToolTip.SetToolTip(this.button2, "Lower priority installs a mod earlier.\nThis means other mods can overwrite its changes.");
-            ToolTip botPriToolTip = new System.Windows.Forms.ToolTip();
+            ToolTip botPriToolTip = new ToolTip();
             botPriToolTip.SetToolTip(this.button4, "Lower priority installs a mod earlier.\nThis means other mods can overwrite its changes.");
-            ToolTip deleteToolTip = new System.Windows.Forms.ToolTip();
+            ToolTip deleteToolTip = new ToolTip();
             deleteToolTip.SetToolTip(this.button7, "Deletes a selected mod's installer files.\nIf installed, the mod will be removed from your game next time you apply.");
-            ToolTip rootDirToolTip = new System.Windows.Forms.ToolTip();
+            ToolTip rootDirToolTip = new ToolTip();
             rootDirToolTip.SetToolTip(this.openGameRoot, "Opens your Halo Online root directory.");
-            ToolTip modsDirToolTip = new System.Windows.Forms.ToolTip();
+            ToolTip modsDirToolTip = new ToolTip();
             modsDirToolTip.SetToolTip(this.openMods, "Opens your FMM mods directory.");
-            ToolTip applyToolTip = new System.Windows.Forms.ToolTip();
+            ToolTip applyToolTip = new ToolTip();
             applyToolTip.SetToolTip(this.button5, "Installs checked mods to your Halo Online installation.");
-            ToolTip launchToolTip = new System.Windows.Forms.ToolTip();
+            ToolTip launchToolTip = new ToolTip();
             launchToolTip.SetToolTip(this.button6, "Opens 'eldorado.exe' from FMM's current directory.");
-            ToolTip dlToolTip = new System.Windows.Forms.ToolTip();
+            ToolTip dlToolTip = new ToolTip();
             dlToolTip.SetToolTip(this.button16, "Downloads checked mods to your 'My Mods' list.");
 
 

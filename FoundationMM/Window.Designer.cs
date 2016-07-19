@@ -325,18 +325,20 @@
             this.percentageLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 489);
             this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.ShowItemToolTips = true;
             this.statusStrip1.Size = new System.Drawing.Size(789, 22);
             this.statusStrip1.TabIndex = 2;
             // 
             // refreshMods
             // 
+            this.refreshMods.AutoToolTip = false;
             this.refreshMods.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.refreshMods.DropDownButtonWidth = 0;
             this.refreshMods.Image = global::FoundationMM.Properties.Resources.ico_refresh;
             this.refreshMods.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.refreshMods.Name = "refreshMods";
             this.refreshMods.Size = new System.Drawing.Size(21, 20);
-            this.refreshMods.Text = "toolStripSplitButton1";
+            this.refreshMods.ToolTipText = "Reloads the current tab\'s mod list.";
             this.refreshMods.Click += new System.EventHandler(this.refreshModsClick);
             // 
             // modNumberLabel
@@ -348,7 +350,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(658, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(627, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // percentageLabel
