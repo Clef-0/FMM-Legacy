@@ -350,7 +350,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(627, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(658, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // percentageLabel
@@ -534,7 +534,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Window";
-            this.Text = "Foundation Mod Manager v1.11 Headlong";
+            this.Text = "Foundation Mod Manager v1.20 Infinity";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Window_FormClosing);
             this.Load += new System.EventHandler(this.Window_Load);
             this.panel1.ResumeLayout(false);

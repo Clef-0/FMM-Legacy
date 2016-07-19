@@ -108,6 +108,7 @@ namespace FoundationMM
 
         private void button16_Click(object sender, EventArgs e)
         {
+            
             ListView.CheckedListViewItemCollection oitems = listView2.CheckedItems;
             List<ListViewItem> items = new List<ListViewItem>();
 
@@ -116,7 +117,10 @@ namespace FoundationMM
                 items.Add(item);
             }
 
-            dlModWorkerStarter.RunWorkerAsync(items);
+            if (items.Count != 0)
+            {
+                dlModWorkerStarter.RunWorkerAsync(items);
+            }
         }
     }
 }
