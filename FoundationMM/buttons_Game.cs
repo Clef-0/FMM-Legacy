@@ -13,7 +13,14 @@ namespace FoundationMM
 
         private void launchDewritoClick(object sender, EventArgs e)
         {
-            Process.Start(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "eldorado.exe"), "-launcher");
+            if (File.Exists(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "eldorado.exe")))
+            {
+                Process.Start(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "eldorado.exe"), "-launcher");
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Cannot find eldorado.exe. If it has been renamed, FMM cannot run ElDewrito for you.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void applyClick(object sender, EventArgs e)

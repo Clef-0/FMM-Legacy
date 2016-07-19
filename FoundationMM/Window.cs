@@ -65,7 +65,13 @@ namespace FoundationMM
             System.Windows.Forms.ToolTip decPriToolTip = new System.Windows.Forms.ToolTip();
             decPriToolTip.SetToolTip(this.button2, "Lower priority installs a mod earlier.\nThis means other mods can overwrite its changes.");
             System.Windows.Forms.ToolTip botPriToolTip = new System.Windows.Forms.ToolTip();
-            botPriToolTip.SetToolTip(this.button2, "Lower priority installs a mod earlier.\nThis means other mods can overwrite its changes.");
+            botPriToolTip.SetToolTip(this.button4, "Lower priority installs a mod earlier.\nThis means other mods can overwrite its changes.");
+            System.Windows.Forms.ToolTip deleteToolTip = new System.Windows.Forms.ToolTip();
+            deleteToolTip.SetToolTip(this.button7, "Deletes a selected mod's installer files.\nIf installed, the mod will be removed from your game next time you apply.");
+            System.Windows.Forms.ToolTip rootDirToolTip = new System.Windows.Forms.ToolTip();
+            rootDirToolTip.SetToolTip(this.openGameRoot, "Opens your Halo Online root directory.");
+            System.Windows.Forms.ToolTip modsDirToolTip = new System.Windows.Forms.ToolTip();
+            modsDirToolTip.SetToolTip(this.openMods, "Opens your FMM mods directory.");
 
 
             deleteOldBackupWorker.WorkerSupportsCancellation = true;
