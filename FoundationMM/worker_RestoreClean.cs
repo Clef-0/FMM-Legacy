@@ -27,7 +27,7 @@ namespace FoundationMM
                 {
                     if (File.Exists(Path.Combine(mapsPath, "fmmbak", file)) && File.Exists(Path.Combine(mapsPath, file)))
                     {
-                        if (!areBakAndMainEqual(new FileInfo(Path.Combine(mapsPath, "fmmbak", file)), new FileInfo(Path.Combine(mapsPath, file))))
+                        if (!areBakAndMainEqual(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file)))
                         {
                             File.Copy(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file), true);
                         }

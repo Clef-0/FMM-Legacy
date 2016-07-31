@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace FoundationMM
@@ -49,7 +50,7 @@ namespace FoundationMM
                     {
                         if (File.Exists(Path.Combine(mapsPath, "fmmbak", file)) && File.Exists(Path.Combine(mapsPath, file)))
                         {
-                            if (!areBakAndMainEqual(new FileInfo(Path.Combine(mapsPath, "fmmbak", file)), new FileInfo(Path.Combine(mapsPath, file))))
+                            if (!areBakAndMainEqual(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file)))
                             {
                                 File.Copy(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file), true);
                             }
@@ -62,31 +63,56 @@ namespace FoundationMM
             }
         }
         
-        static bool areBakAndMainEqual(FileInfo first, FileInfo second)
+        // borrowed from James Johnson @ StackOverflow because Clef's code sucked ass
+        private bool areBakAndMainEqual(string file1, string file2)
         {
-            if (first.Length != second.Length)
+            int file1byte;
+            int file2byte;
+            FileStream fs1;
+            FileStream fs2;
+
+            // Determine if the same file was referenced two times.
+            if (file1 == file2)
             {
+                // Return true to indicate that the files are the same.
+                return true;
+            }
+
+            // Open the two files.
+            fs1 = new FileStream(file1, FileMode.Open, FileAccess.Read);
+            fs2 = new FileStream(file2, FileMode.Open, FileAccess.Read);
+
+            // Check the file sizes. If they are not the same, the files 
+            // are not the same.
+            if (fs1.Length != fs2.Length)
+            {
+                // Close the file
+                fs1.Close();
+                fs2.Close();
+
+                // Return false to indicate files are different
                 return false;
             }
 
-            FileStream firstFS = first.OpenRead();
-            FileStream secondFS = second.OpenRead();
-
-            byte[] firstHash = System.Security.Cryptography.MD5.Create().ComputeHash(firstFS);
-            byte[] secondHash = System.Security.Cryptography.MD5.Create().ComputeHash(secondFS);
-
-            for (int i = 0; i < firstHash.Length; i++)
+            // Read and compare a byte from each file until either a
+            // non-matching set of bytes is found or until the end of
+            // file1 is reached.
+            do
             {
-                if (firstHash[i] != secondHash[i])
-                {
-                    firstFS.Close();
-                    secondFS.Close();
-                    return false;
-                }
+                // Read one byte from each file.
+                file1byte = fs1.ReadByte();
+                file2byte = fs2.ReadByte();
             }
-            firstFS.Close();
-            secondFS.Close();
-            return true;
+            while ((file1byte == file2byte) && (file1byte != -1));
+
+            // Close the files.
+            fs1.Close();
+            fs2.Close();
+
+            // Return the success of the comparison. "file1byte" is 
+            // equal to "file2byte" at this point only if the files are 
+            // the same.
+            return ((file1byte - file2byte) == 0);
         }
 
         private void fileTransferWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
