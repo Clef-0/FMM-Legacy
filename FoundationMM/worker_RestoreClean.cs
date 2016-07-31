@@ -25,22 +25,13 @@ namespace FoundationMM
                 }
                 else
                 {
-                    if (File.Exists(Path.Combine(mapsPath, "fmmbak", file)))
-                    {
-                        File.Copy(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file), true); i++;
-                        float progress = ((float)i / (float)files.Count()) * 100;
-                        worker.ReportProgress(Convert.ToInt32(progress));
-                    }
-                    else
-                    {
-                        //file must be part of a mod, ignore since we fresh install every time
-                        File.Delete(Path.Combine(mapsPath, file));
-                    }
-                    
+                    File.Copy(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file), true);
+                    i++;
+                    float progress = ((float)i / (float)files.Count()) * 100;
+                    worker.ReportProgress(Convert.ToInt32(progress));
+
                 }
             }
-
-            files = ResetFilesVar();
         }
 
         private void restoreCleanWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
