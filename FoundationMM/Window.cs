@@ -14,6 +14,7 @@ namespace FoundationMM
     {
         public static string[] ResetFilesVar()
         {
+            DirectoryInfo maps_dir = Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "maps"));
             string[] files_temp = (Directory.EnumerateFiles("maps", "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith(".bin") || s.EndsWith(".map") || s.EndsWith(".dat"))).ToArray();
             string[] files_fix = files_temp.Select(x => x.Replace("maps\\", "")).ToArray();
             string[] files = files_fix.SkipWhile(x => x.StartsWith("fmmbak")).ToArray();
