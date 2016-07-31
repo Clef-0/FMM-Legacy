@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using System.Linq;
 
 using Ini;
 
@@ -11,32 +12,17 @@ namespace FoundationMM
 {
     public partial class Window : Form
     {
-        string[] files = {
-                    @"fonts\font_package.bin",
-                    "audio.dat",
-                    "bunkerworld.map",
-                    "chill.map",
-                    "cyberdyne.map",
-                    "deadlock.map",
-                    "guardian.map",
-                    "mainmenu.map",
-                    "resources.dat",
-                    "riverworld.map",
-                    "s3d_avalanche.map",
-                    "s3d_edge.map",
-                    "s3d_reactor.map",
-                    "s3d_turf.map",
-                    "shrine.map",
-                    "string_ids.dat",
-                    "tags.dat",
-                    "textures.dat",
-                    "textures_b.dat",
-                    "video.dat",
-                    "zanzibar.map"
-                };
+        public static string[] ResetFilesVar()
+        {
+            string[] files_temp = (Directory.EnumerateFiles("maps", "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith(".bin") || s.EndsWith(".map") || s.EndsWith(".dat"))).ToArray();
+            string[] files_fix = files_temp.Select(x => x.Replace("maps\\", "")).ToArray();
+            string[] files = files_fix.SkipWhile(x => x.StartsWith("fmmbak")).ToArray();
+            return files;
+        }
+
+        public string[] files = ResetFilesVar();
 
         List<string> locatedFMMInstallers = new List<string>();
-        
 
         public Window()
         {

@@ -14,7 +14,6 @@ namespace FoundationMM
 
             string mapsPath = args[0];
 
-
             BackgroundWorker worker = sender as BackgroundWorker;
             int i = 0;
             foreach (string file in files)
@@ -26,12 +25,22 @@ namespace FoundationMM
                 }
                 else
                 {
-                    File.Copy(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file), true);
-                    i++;
-                    float progress = ((float)i / (float)files.Count()) * 100;
-                    worker.ReportProgress(Convert.ToInt32(progress));
+                    if (File.Exists(Path.Combine(mapsPath, "fmmbak", file)))
+                    {
+                        File.Copy(Path.Combine(mapsPath, "fmmbak", file), Path.Combine(mapsPath, file), true); i++;
+                        float progress = ((float)i / (float)files.Count()) * 100;
+                        worker.ReportProgress(Convert.ToInt32(progress));
+                    }
+                    else
+                    {
+                        //file must be part of a mod, ignore since we fresh install every time
+                        File.Delete(Path.Combine(mapsPath, file));
+                    }
+                    
                 }
             }
+
+            files = ResetFilesVar();
         }
 
         private void restoreCleanWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
