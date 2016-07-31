@@ -64,16 +64,28 @@ namespace FoundationMM
         
         static bool areBakAndMainEqual(FileInfo first, FileInfo second)
         {
-            byte[] firstHash = System.Security.Cryptography.MD5.Create().ComputeHash(first.OpenRead());
-            byte[] secondHash = System.Security.Cryptography.MD5.Create().ComputeHash(second.OpenRead());
+            if (first.Length != second.Length)
+            {
+                return false;
+            }
+
+            FileStream firstFS = first.OpenRead();
+            FileStream secondFS = second.OpenRead();
+
+            byte[] firstHash = System.Security.Cryptography.MD5.Create().ComputeHash(firstFS);
+            byte[] secondHash = System.Security.Cryptography.MD5.Create().ComputeHash(secondFS);
 
             for (int i = 0; i < firstHash.Length; i++)
             {
                 if (firstHash[i] != secondHash[i])
                 {
+                    firstFS.Close();
+                    secondFS.Close();
                     return false;
                 }
             }
+            firstFS.Close();
+            secondFS.Close();
             return true;
         }
 
