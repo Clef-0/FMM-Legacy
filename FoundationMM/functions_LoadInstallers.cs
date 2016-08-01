@@ -97,7 +97,7 @@ namespace FoundationMM
             }
             using (var client = new System.Net.WebClient())
             {
-                client.DownloadFile("https://raw.githubusercontent.com/Clef-0/FMM-Mods/master/meta/links.txt", Path.Combine(Directory.GetCurrentDirectory(), "fmm-svn", "links.txt"));
+                client.DownloadFile("https://cdn.rawgit.com/Clef-0/FMM-Mods/master/meta/links.txt", Path.Combine(Directory.GetCurrentDirectory(), "fmm-svn", "links.txt"));
             }
 
             
@@ -126,7 +126,7 @@ namespace FoundationMM
                             catch { modWarnings = ""; }
                             string modDesc = ini.IniReadValue("FMMInfo", "Desc");
 
-                            string modLocation = modini.Replace("https://raw.githubusercontent.com/Clef-0/FMM-Mods/master/", "").Replace(".ini", ".fm");
+                            string modLocation = modini.Replace("https://cdn.rawgit.com/Clef-0/FMM-Mods/master/", "").Replace(".ini", ".fm");
                             listView2.Invoke((MethodInvoker)delegate { listView2.Items.Add(new ListViewItem(new[] { modName, modAuthor, modVersion, modDesc, modWarnings, modLocation })); });
 
                             if (enabledTab == 1)
