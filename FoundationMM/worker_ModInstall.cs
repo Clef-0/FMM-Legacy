@@ -13,6 +13,8 @@ namespace FoundationMM
 
         private void modInstallWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            outputPanel.Invoke((MethodInvoker)delegate { outputPanel.Visible = true; });
+            
             BackgroundWorker worker = sender as BackgroundWorker;
             int i = 0;
 
