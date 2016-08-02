@@ -97,6 +97,7 @@ namespace FoundationMM
                     File.Delete(batFile);
                 }
             }
+            textBox1.Invoke((MethodInvoker)delegate { textBox1.Text = ""; });
         }
 
         private void modInstallWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)

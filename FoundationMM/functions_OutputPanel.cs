@@ -23,6 +23,9 @@ namespace FoundationMM
             MessageBox.Show(output);
         }
 
+
+        // following code not in use (yet) :p
+
         public delegate void appendNewLogCallback(string output);
 
         private void _appendNewLog(string output)
