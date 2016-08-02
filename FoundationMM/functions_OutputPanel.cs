@@ -14,7 +14,7 @@ namespace FoundationMM
 
         private void appendNewOutput(string output)
         {
-            textBox1.AppendText(Environment.NewLine + output);
+            textBox1.AppendText(output + Environment.NewLine);
         }
 
         private void showMessageBox(string output)

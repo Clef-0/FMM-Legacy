@@ -56,6 +56,8 @@ namespace FoundationMM
                     startInfo.FileName = batFile;
                     startInfo.WorkingDirectory = System.IO.Directory.GetCurrentDirectory();
 
+                    textBox1.Invoke(new appendNewOutputCallback(this.appendNewOutput), new object[] { "[" + item.SubItems[0].Text + "]" });
+
                     // start installer
                     using (Process exeProcess = Process.Start(startInfo))
                     {
