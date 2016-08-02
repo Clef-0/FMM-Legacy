@@ -97,7 +97,6 @@ namespace FoundationMM
                     File.Delete(batFile);
                 }
             }
-            textBox1.Invoke((MethodInvoker)delegate { textBox1.Text = ""; });
         }
 
         private void modInstallWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -110,6 +109,7 @@ namespace FoundationMM
             percentageLabel.Text = "";
             FlashWindowEx(this);
             MessageBox.Show("Selected mods applied.");
+            textBox1.Invoke((MethodInvoker)delegate { textBox1.Text = ""; });
             button1.Enabled = true;
             button2.Enabled = true;
             button3.Enabled = true;
