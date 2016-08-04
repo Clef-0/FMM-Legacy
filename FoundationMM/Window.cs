@@ -52,6 +52,8 @@ namespace FoundationMM
         BackgroundWorker dlModWorkerStarter = new BackgroundWorker();
         BackgroundWorker dlModWorker = new BackgroundWorker();
 
+        bool refreshinprog = false;
+
         private void Window_Load(object sender, EventArgs e)
         {
             tabControl1.TabPages.Remove(tabPage3);
@@ -170,7 +172,9 @@ namespace FoundationMM
             checkFMMInstallerOrder();
 
             Log("Downloading mod list...");
+            refreshinprog = true;
             dlFilesWorker.RunWorkerAsync(new string[] { Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods") });
+            
 
             Log("Counting available mods...");
             int modCount = listView1.Items.Count;

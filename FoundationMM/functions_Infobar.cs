@@ -147,7 +147,6 @@ namespace FoundationMM
                     }
                 }
             }
-            else { infobar.Visible = false; }
         }
         
         private void listView2_SelectedIndexChanged(object sender, EventArgs e)
@@ -283,7 +282,6 @@ namespace FoundationMM
                     }
                 }
             }
-            else { infobar2.Visible = false; }
         }
 
         private void infobarIcon_MouseClick(object sender, MouseEventArgs e)

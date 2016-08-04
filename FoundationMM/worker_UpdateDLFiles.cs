@@ -17,7 +17,6 @@ namespace FoundationMM
             BackgroundWorker worker = sender as BackgroundWorker;
 
             populateInstallerDLList();
-
         }
         
         private void dlFilesWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -26,6 +25,7 @@ namespace FoundationMM
             {
                 percentageLabel.Text = ("Error: " + e.Error.Message);
             }
+            refreshinprog = false;
         }
     }
 }

@@ -28,8 +28,12 @@ namespace FoundationMM
             }
             else
             {
-                listView2.Items.Clear();
-                dlFilesWorker.RunWorkerAsync(new string[] { Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods") });
+                if (refreshinprog == false)
+                {
+                    refreshinprog = true;
+                    listView2.Items.Clear();
+                    dlFilesWorker.RunWorkerAsync(new string[] { Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods") });
+                }
             }
         }
     }
