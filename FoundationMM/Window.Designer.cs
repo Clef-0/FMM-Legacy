@@ -435,7 +435,7 @@
             this.infobar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.infobar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.infobar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.infobar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.infobar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
             this.infobar.Controls.Add(this.infobarIcon, 0, 0);
             this.infobar.Controls.Add(this.infobarLPane, 1, 0);
             this.infobar.Controls.Add(this.infobarRPane, 2, 0);
@@ -467,7 +467,7 @@
             this.infobarLPane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.infobarLPane.Location = new System.Drawing.Point(75, 3);
             this.infobarLPane.Name = "infobarLPane";
-            this.infobarLPane.Size = new System.Drawing.Size(184, 66);
+            this.infobarLPane.Size = new System.Drawing.Size(183, 66);
             this.infobarLPane.TabIndex = 1;
             // 
             // infobarCredits
@@ -505,7 +505,7 @@
             // 
             this.infobarRPane.Controls.Add(this.infobarDesc);
             this.infobarRPane.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infobarRPane.Location = new System.Drawing.Point(265, 3);
+            this.infobarRPane.Location = new System.Drawing.Point(264, 3);
             this.infobarRPane.Name = "infobarRPane";
             this.infobarRPane.Size = new System.Drawing.Size(226, 66);
             this.infobarRPane.TabIndex = 2;
@@ -526,10 +526,10 @@
             // infobarImage
             // 
             this.infobarImage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infobarImage.Location = new System.Drawing.Point(494, 0);
+            this.infobarImage.Location = new System.Drawing.Point(493, 0);
             this.infobarImage.Margin = new System.Windows.Forms.Padding(0);
             this.infobarImage.Name = "infobarImage";
-            this.infobarImage.Size = new System.Drawing.Size(129, 72);
+            this.infobarImage.Size = new System.Drawing.Size(130, 72);
             this.infobarImage.TabIndex = 3;
             this.infobarImage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.infobarImage_MouseClick);
             // 
@@ -607,7 +607,7 @@
             this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
             this.infobar2.Controls.Add(this.infobar2Icon, 0, 0);
             this.infobar2.Controls.Add(this.panel4, 1, 0);
             this.infobar2.Controls.Add(this.panel5, 2, 0);
@@ -639,7 +639,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(75, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(184, 66);
+            this.panel4.Size = new System.Drawing.Size(183, 66);
             this.panel4.TabIndex = 1;
             // 
             // infobar2Credits
@@ -677,7 +677,7 @@
             // 
             this.panel5.Controls.Add(this.infobar2Desc);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(265, 3);
+            this.panel5.Location = new System.Drawing.Point(264, 3);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(226, 66);
             this.panel5.TabIndex = 2;
@@ -698,10 +698,10 @@
             // infobar2Image
             // 
             this.infobar2Image.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infobar2Image.Location = new System.Drawing.Point(494, 0);
+            this.infobar2Image.Location = new System.Drawing.Point(493, 0);
             this.infobar2Image.Margin = new System.Windows.Forms.Padding(0);
             this.infobar2Image.Name = "infobar2Image";
-            this.infobar2Image.Size = new System.Drawing.Size(129, 72);
+            this.infobar2Image.Size = new System.Drawing.Size(130, 72);
             this.infobar2Image.TabIndex = 3;
             this.infobar2Image.MouseClick += new System.Windows.Forms.MouseEventHandler(this.infobar2Image_MouseClick);
             // 
@@ -744,7 +744,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Window";
-            this.Text = "Foundation Mod Manager for Halo Online";
+            this.Text = "Foundation Mod Manager v1.20 Infinity (for Halo Online)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Window_FormClosing);
             this.Load += new System.EventHandler(this.Window_Load);
             this.panel1.ResumeLayout(false);
