@@ -71,6 +71,13 @@
             this.infobarDesc = new System.Windows.Forms.TextBox();
             this.infobarImage = new System.Windows.Forms.Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.infobar2 = new System.Windows.Forms.TableLayoutPanel();
             this.infobar2Icon = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -80,13 +87,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.infobar2Desc = new System.Windows.Forms.TextBox();
             this.infobar2Image = new System.Windows.Forms.Panel();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.button16 = new System.Windows.Forms.Button();
@@ -548,111 +548,6 @@
             this.tabPage2.Text = "Downloadable Mods";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // infobar2
-            // 
-            this.infobar2.BackColor = System.Drawing.SystemColors.Control;
-            this.infobar2.ColumnCount = 4;
-            this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
-            this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
-            this.infobar2.Controls.Add(this.infobar2Icon, 0, 0);
-            this.infobar2.Controls.Add(this.panel4, 1, 0);
-            this.infobar2.Controls.Add(this.panel5, 2, 0);
-            this.infobar2.Controls.Add(this.infobar2Image, 3, 0);
-            this.infobar2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.infobar2.Location = new System.Drawing.Point(0, 391);
-            this.infobar2.Name = "infobar2";
-            this.infobar2.RowCount = 1;
-            this.infobar2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.infobar2.Size = new System.Drawing.Size(623, 72);
-            this.infobar2.TabIndex = 6;
-            this.infobar2.Visible = false;
-            // 
-            // infobar2Icon
-            // 
-            this.infobar2Icon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infobar2Icon.Location = new System.Drawing.Point(0, 0);
-            this.infobar2Icon.Margin = new System.Windows.Forms.Padding(0);
-            this.infobar2Icon.Name = "infobar2Icon";
-            this.infobar2Icon.Size = new System.Drawing.Size(72, 72);
-            this.infobar2Icon.TabIndex = 0;
-            this.infobar2Icon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.infobar2Icon_MouseClick);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.infobar2Credits);
-            this.panel4.Controls.Add(this.infobar2Author);
-            this.panel4.Controls.Add(this.infobar2Name);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(75, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(162, 66);
-            this.panel4.TabIndex = 1;
-            // 
-            // infobar2Credits
-            // 
-            this.infobar2Credits.AutoSize = true;
-            this.infobar2Credits.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infobar2Credits.Location = new System.Drawing.Point(3, 28);
-            this.infobar2Credits.MaximumSize = new System.Drawing.Size(130, 0);
-            this.infobar2Credits.Name = "infobar2Credits";
-            this.infobar2Credits.Size = new System.Drawing.Size(87, 13);
-            this.infobar2Credits.TabIndex = 2;
-            this.infobar2Credits.Text = "infobar2Credits";
-            // 
-            // infobar2Author
-            // 
-            this.infobar2Author.AutoSize = true;
-            this.infobar2Author.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infobar2Author.Location = new System.Drawing.Point(3, 15);
-            this.infobar2Author.Name = "infobar2Author";
-            this.infobar2Author.Size = new System.Drawing.Size(87, 13);
-            this.infobar2Author.TabIndex = 1;
-            this.infobar2Author.Text = "infobar2Author";
-            // 
-            // infobar2Name
-            // 
-            this.infobar2Name.AutoSize = true;
-            this.infobar2Name.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infobar2Name.Location = new System.Drawing.Point(3, 0);
-            this.infobar2Name.Name = "infobar2Name";
-            this.infobar2Name.Size = new System.Drawing.Size(87, 15);
-            this.infobar2Name.TabIndex = 0;
-            this.infobar2Name.Text = "infobar2Name";
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.infobar2Desc);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(243, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(246, 66);
-            this.panel5.TabIndex = 2;
-            // 
-            // infobar2Desc
-            // 
-            this.infobar2Desc.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.infobar2Desc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infobar2Desc.Location = new System.Drawing.Point(0, 0);
-            this.infobar2Desc.Multiline = true;
-            this.infobar2Desc.Name = "infobar2Desc";
-            this.infobar2Desc.ReadOnly = true;
-            this.infobar2Desc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.infobar2Desc.Size = new System.Drawing.Size(246, 66);
-            this.infobar2Desc.TabIndex = 1;
-            this.infobar2Desc.Text = "infobar2Desc";
-            // 
-            // infobar2Image
-            // 
-            this.infobar2Image.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infobar2Image.Location = new System.Drawing.Point(492, 0);
-            this.infobar2Image.Margin = new System.Windows.Forms.Padding(0);
-            this.infobar2Image.Name = "infobar2Image";
-            this.infobar2Image.Size = new System.Drawing.Size(131, 72);
-            this.infobar2Image.TabIndex = 3;
-            this.infobar2Image.MouseClick += new System.Windows.Forms.MouseEventHandler(this.infobar2Image_MouseClick);
-            // 
             // listView2
             // 
             this.listView2.AllowDrop = true;
@@ -707,6 +602,111 @@
             // 
             this.columnHeader6.Text = "Location";
             this.columnHeader6.Width = 150;
+            // 
+            // infobar2
+            // 
+            this.infobar2.BackColor = System.Drawing.SystemColors.Control;
+            this.infobar2.ColumnCount = 4;
+            this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.infobar2.Controls.Add(this.infobar2Icon, 0, 0);
+            this.infobar2.Controls.Add(this.panel4, 1, 0);
+            this.infobar2.Controls.Add(this.panel5, 2, 0);
+            this.infobar2.Controls.Add(this.infobar2Image, 3, 0);
+            this.infobar2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.infobar2.Location = new System.Drawing.Point(0, 391);
+            this.infobar2.Name = "infobar2";
+            this.infobar2.RowCount = 1;
+            this.infobar2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.infobar2.Size = new System.Drawing.Size(623, 72);
+            this.infobar2.TabIndex = 6;
+            this.infobar2.Visible = false;
+            // 
+            // infobar2Icon
+            // 
+            this.infobar2Icon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.infobar2Icon.Location = new System.Drawing.Point(0, 0);
+            this.infobar2Icon.Margin = new System.Windows.Forms.Padding(0);
+            this.infobar2Icon.Name = "infobar2Icon";
+            this.infobar2Icon.Size = new System.Drawing.Size(72, 72);
+            this.infobar2Icon.TabIndex = 0;
+            this.infobar2Icon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.infobar2Icon_MouseClick);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.infobar2Credits);
+            this.panel4.Controls.Add(this.infobar2Author);
+            this.panel4.Controls.Add(this.infobar2Name);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(75, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(163, 66);
+            this.panel4.TabIndex = 1;
+            // 
+            // infobar2Credits
+            // 
+            this.infobar2Credits.AutoSize = true;
+            this.infobar2Credits.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infobar2Credits.Location = new System.Drawing.Point(3, 28);
+            this.infobar2Credits.MaximumSize = new System.Drawing.Size(130, 0);
+            this.infobar2Credits.Name = "infobar2Credits";
+            this.infobar2Credits.Size = new System.Drawing.Size(87, 13);
+            this.infobar2Credits.TabIndex = 2;
+            this.infobar2Credits.Text = "infobar2Credits";
+            // 
+            // infobar2Author
+            // 
+            this.infobar2Author.AutoSize = true;
+            this.infobar2Author.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infobar2Author.Location = new System.Drawing.Point(3, 15);
+            this.infobar2Author.Name = "infobar2Author";
+            this.infobar2Author.Size = new System.Drawing.Size(87, 13);
+            this.infobar2Author.TabIndex = 1;
+            this.infobar2Author.Text = "infobar2Author";
+            // 
+            // infobar2Name
+            // 
+            this.infobar2Name.AutoSize = true;
+            this.infobar2Name.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infobar2Name.Location = new System.Drawing.Point(3, 0);
+            this.infobar2Name.Name = "infobar2Name";
+            this.infobar2Name.Size = new System.Drawing.Size(87, 15);
+            this.infobar2Name.TabIndex = 0;
+            this.infobar2Name.Text = "infobar2Name";
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.infobar2Desc);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(244, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(247, 66);
+            this.panel5.TabIndex = 2;
+            // 
+            // infobar2Desc
+            // 
+            this.infobar2Desc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.infobar2Desc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.infobar2Desc.Location = new System.Drawing.Point(0, 0);
+            this.infobar2Desc.Multiline = true;
+            this.infobar2Desc.Name = "infobar2Desc";
+            this.infobar2Desc.ReadOnly = true;
+            this.infobar2Desc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.infobar2Desc.Size = new System.Drawing.Size(247, 66);
+            this.infobar2Desc.TabIndex = 1;
+            this.infobar2Desc.Text = "infobar2Desc";
+            // 
+            // infobar2Image
+            // 
+            this.infobar2Image.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.infobar2Image.Location = new System.Drawing.Point(494, 0);
+            this.infobar2Image.Margin = new System.Windows.Forms.Padding(0);
+            this.infobar2Image.Name = "infobar2Image";
+            this.infobar2Image.Size = new System.Drawing.Size(129, 72);
+            this.infobar2Image.TabIndex = 3;
+            this.infobar2Image.MouseClick += new System.Windows.Forms.MouseEventHandler(this.infobar2Image_MouseClick);
             // 
             // panel2
             // 

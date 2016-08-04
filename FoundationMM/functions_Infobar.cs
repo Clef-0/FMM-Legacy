@@ -46,7 +46,12 @@ namespace FoundationMM
 
                 if (ini.IniReadValue("FMMInfo", "EDVersion") != "")
                 {
-                    descBox += "ElDewrito version: " + ini.IniReadValue("FMMInfo", "EDVersion") + Environment.NewLine + Environment.NewLine;
+                    descBox += "ElDewrito version: " + ini.IniReadValue("FMMInfo", "EDVersion") + Environment.NewLine;
+                }
+                
+                if (descBox != "")
+                {
+                    descBox += Environment.NewLine;
                 }
 
                 if (ini.IniReadValue("FMMInfo", "LongDesc") != "")
