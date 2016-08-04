@@ -56,7 +56,6 @@ namespace FoundationMM
 
         private void Window_Load(object sender, EventArgs e)
         {
-            tabControl1.TabPages.Remove(tabPage3);
             listView1.AllowDrop = true;
 
             outputPanel.Dock = DockStyle.Fill;

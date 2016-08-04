@@ -30,7 +30,7 @@ namespace FoundationMM
 
         private void _appendNewLog(string output)
         {
-            debugTextBox.AppendText(output + Environment.NewLine);
+            //debugTextBox.AppendText(output + Environment.NewLine);
         }
         
         private void Log(string output)

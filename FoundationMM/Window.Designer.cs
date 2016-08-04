@@ -90,8 +90,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.button16 = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.debugTextBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.devModeGroupBox.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -110,7 +108,6 @@
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView1
@@ -410,7 +407,6 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -739,28 +735,6 @@
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.debugTextBox);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(781, 463);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Debug Log wip";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // debugTextBox
-            // 
-            this.debugTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.debugTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.debugTextBox.Location = new System.Drawing.Point(0, 0);
-            this.debugTextBox.Multiline = true;
-            this.debugTextBox.Name = "debugTextBox";
-            this.debugTextBox.ReadOnly = true;
-            this.debugTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.debugTextBox.Size = new System.Drawing.Size(781, 463);
-            this.debugTextBox.TabIndex = 1;
-            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -797,8 +771,6 @@
             this.panel5.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -848,8 +820,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TextBox debugTextBox;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.TableLayoutPanel infobar;
         private System.Windows.Forms.Panel infobarLPane;
