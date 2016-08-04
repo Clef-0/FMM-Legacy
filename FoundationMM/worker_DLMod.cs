@@ -47,7 +47,12 @@ namespace FoundationMM
 
         private void dlModWorkerStarter_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Checked mods downloaded.\nRefresh your \"My Mods\" window.");
+            MessageBox.Show("Checked mods downloaded.");
+            listView1.Items.Clear();
+            locatedFMMInstallers.Clear();
+            lookForFMMInstallers();
+            addFMMInstallersToList();
+            checkFMMInstallerOrder();
             tabControl1.Invoke((MethodInvoker)delegate { tabControl1.Enabled = true; });
             statusStrip1.Invoke((MethodInvoker)delegate { percentageLabel.Text = ""; });
             statusStrip1.Invoke((MethodInvoker)delegate { refreshMods.Enabled = true; });
