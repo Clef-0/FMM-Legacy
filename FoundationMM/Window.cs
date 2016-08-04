@@ -347,5 +347,10 @@ namespace FoundationMM
             listView2.ListViewItemSorter = new ListViewItemComparer(e.Column, listView2.Sorting);
             checkFMMInstallerOrder();
         }
+
+        private void outputPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
