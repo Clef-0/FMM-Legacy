@@ -19,8 +19,10 @@ namespace FoundationMM
             if (listView1.SelectedItems.Count > 0)
             {
                 IniFile ini = new IniFile(Path.Combine(Directory.GetCurrentDirectory(), "mods", listView1.SelectedItems[0].SubItems[5].Text.Replace(".fm", ".ini")));
-                infobar.Visible = true;
+                
+                IniFile ini2 = new IniFile(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini"));
 
+                infobar.Visible = true;
 
                 infobarName.Text = ini.IniReadValue("FMMInfo", "Name") + " " + ini.IniReadValue("FMMInfo", "Version");
                 infobarAuthor.Text = ini.IniReadValue("FMMInfo", "Author");
@@ -87,7 +89,7 @@ namespace FoundationMM
                 }
                 else
                 {
-                    if (ini.IniReadValue("FMMPrefs", "OfflineMode").ToLower() != "true")
+                    if (ini2.IniReadValue("FMMPrefs", "OfflineMode").ToLower() != "true")
                     {
                         try
                         {
@@ -134,7 +136,7 @@ namespace FoundationMM
                 }
                 else
                 {
-                    if (ini.IniReadValue("FMMPrefs", "OfflineMode").ToLower() != "true")
+                    if (ini2.IniReadValue("FMMPrefs", "OfflineMode").ToLower() != "true")
                     {
                         try
                         {
@@ -179,9 +181,11 @@ namespace FoundationMM
             if (listView2.SelectedItems.Count > 0)
             {
                 IniFile ini = new IniFile(Path.Combine(Directory.GetCurrentDirectory(), "fmm-svn", Path.GetFileName(listView2.SelectedItems[0].SubItems[5].Text.Replace(".fm", ".ini"))));
+
+                IniFile ini2 = new IniFile(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini"));
+
                 infobar2.Visible = true;
-
-
+                
                 infobar2Name.Text = ini.IniReadValue("FMMInfo", "Name") + " " + ini.IniReadValue("FMMInfo", "Version");
                 infobar2Author.Text = ini.IniReadValue("FMMInfo", "Author");
 
@@ -242,7 +246,7 @@ namespace FoundationMM
                 }
                 else
                 {
-                    if (ini.IniReadValue("FMMPrefs", "OfflineMode").ToLower() != "true")
+                    if (ini2.IniReadValue("FMMPrefs", "OfflineMode").ToLower() != "true")
                     {
                         try
                         {
@@ -289,7 +293,7 @@ namespace FoundationMM
                 }
                 else
                 {
-                    if (ini.IniReadValue("FMMPrefs", "OfflineMode").ToLower() != "true")
+                    if (ini2.IniReadValue("FMMPrefs", "OfflineMode").ToLower() != "true")
                     {
                         try
                         {
