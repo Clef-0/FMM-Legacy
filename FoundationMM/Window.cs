@@ -54,9 +54,28 @@ namespace FoundationMM
 
         bool refreshinprog = false;
 
+        public static void SetDoubleBuffered(System.Windows.Forms.Control c)
+        {
+            //Taxes: Remote Desktop Connection and painting
+            //http://blogs.msdn.com/oldnewthing/archive/2006/01/03/508694.aspx
+            if (System.Windows.Forms.SystemInformation.TerminalServerSession)
+                return;
+
+            System.Reflection.PropertyInfo aProp =
+                  typeof(System.Windows.Forms.Control).GetProperty(
+                        "DoubleBuffered",
+                        System.Reflection.BindingFlags.NonPublic |
+                        System.Reflection.BindingFlags.Instance);
+
+            aProp.SetValue(c, true, null);
+        }
+
         private void Window_Load(object sender, EventArgs e)
         {
-            listView1.AllowDrop = true;
+            // attempt double buffering on OSes that support it.
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetDoubleBuffered(listView1);
+            SetDoubleBuffered(listView2);
 
             outputPanel.Dock = DockStyle.Fill;
             
@@ -162,6 +181,7 @@ namespace FoundationMM
             }
 
 #endif
+            IniFile ini2 = new IniFile(identifier);
 
             Log("Looking for installers...");
             lookForFMMInstallers();
@@ -169,11 +189,18 @@ namespace FoundationMM
             addFMMInstallersToList();
             Log("Ordering installers as saved...");
             checkFMMInstallerOrder();
-
-            Log("Downloading mod list...");
-            refreshinprog = true;
-            dlFilesWorker.RunWorkerAsync(new string[] { Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods") });
             
+            if (ini2.IniReadValue("FMMPrefs", "OfflineMode").ToLower() != "true")
+            {
+                Log("Downloading mod list...");
+                refreshinprog = true;
+                dlFilesWorker.RunWorkerAsync(new string[] { Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods") });
+            }
+
+            if (ini2.IniReadValue("FMMPrefs", "OfflineMode").ToLower() == "true")
+            {
+                tabControl1.TabPages.Remove(tabPage2);
+            }
 
             Log("Counting available mods...");
             int modCount = listView1.Items.Count;
@@ -245,6 +272,9 @@ namespace FoundationMM
             {
                 modNumberLabel.Text = modCount + " mods available";
             }
+
+            infobar.Visible = false;
+            infobar2.Visible = false;
         }
 
         bool listView1DND = false;
