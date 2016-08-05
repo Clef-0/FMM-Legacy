@@ -13,14 +13,22 @@ namespace FoundationMM
 {
     public partial class Window : Form
     {
-
+        bool selecting = false;
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0)
+            bool infobarsEnabled = true;
+            IniFile ini2 = new IniFile(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini"));
+
+            if (ini2.IniReadValue("FMMPrefs", "NoInfoMode").ToLower() == "true")
             {
+                infobarsEnabled = false;
+            }
+
+            if ((listView1.SelectedItems.Count > 0) && (selecting == false) && (infobarsEnabled == true))
+            {
+                selecting = true;
                 IniFile ini = new IniFile(Path.Combine(Directory.GetCurrentDirectory(), "mods", listView1.SelectedItems[0].SubItems[5].Text.Replace(".fm", ".ini")));
                 
-                IniFile ini2 = new IniFile(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini"));
 
                 infobar.Visible = true;
 
@@ -173,17 +181,25 @@ namespace FoundationMM
                         infobarImage.Tag = "";
                     }
                 }
+                selecting = false;
             }
         }
         
         private void listView2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView2.SelectedItems.Count > 0)
+            bool infobarsEnabled = true;
+            IniFile ini2 = new IniFile(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini"));
+
+            if (ini2.IniReadValue("FMMPrefs", "NoInfoMode").ToLower() == "true")
             {
+                infobarsEnabled = false;
+            }
+
+            if ((listView2.SelectedItems.Count > 0) && (selecting == false) && (infobarsEnabled == true))
+            {
+                selecting = true;
                 IniFile ini = new IniFile(Path.Combine(Directory.GetCurrentDirectory(), "fmm-svn", Path.GetFileName(listView2.SelectedItems[0].SubItems[5].Text.Replace(".fm", ".ini"))));
-
-                IniFile ini2 = new IniFile(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini"));
-
+                
                 infobar2.Visible = true;
                 
                 infobar2Name.Text = ini.IniReadValue("FMMInfo", "Name") + " " + ini.IniReadValue("FMMInfo", "Version");
@@ -330,6 +346,7 @@ namespace FoundationMM
                         infobar2Image.Tag = "";
                     }
                 }
+                selecting = false;
             }
         }
 

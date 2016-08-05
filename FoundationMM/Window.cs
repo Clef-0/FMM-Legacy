@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Linq;
 
 using Ini;
+using System.Drawing;
 
 namespace FoundationMM
 {
@@ -73,9 +74,19 @@ namespace FoundationMM
         private void Window_Load(object sender, EventArgs e)
         {
             // attempt double buffering on OSes that support it.
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            SetDoubleBuffered(listView1);
-            SetDoubleBuffered(listView2);
+            try
+            {
+                SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+                SetDoubleBuffered(listView1);
+                SetDoubleBuffered(listView2);
+                SetDoubleBuffered(infobarDesc);
+                SetDoubleBuffered(infobar2Desc);
+            }
+            catch
+            {
+                // lol okay then
+                // if that's how you want to be
+            }
 
             outputPanel.Dock = DockStyle.Fill;
             
@@ -140,6 +151,7 @@ namespace FoundationMM
 
 
             DirectoryInfo dir0 = Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "mods", "tagmods"));
+            string identifier = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini");
 #if !DEBUG
             if (!File.Exists(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mtndew.dll")))
             {
@@ -149,7 +161,6 @@ namespace FoundationMM
                 return;
             }
 
-            string identifier = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini");
             if (!File.Exists(identifier))
             {
                 IniFile ini = new IniFile(identifier);
@@ -200,6 +211,10 @@ namespace FoundationMM
             if (ini2.IniReadValue("FMMPrefs", "OfflineMode").ToLower() == "true")
             {
                 tabControl1.TabPages.Remove(tabPage2);
+                tabControl1.Appearance = TabAppearance.Buttons;
+                tabControl1.ItemSize = new Size(0, 1);
+                tabControl1.SizeMode = TabSizeMode.Fixed;
+                tabControl1.Margin = new Padding(0, 0, 0, 0);
             }
 
             Log("Counting available mods...");
@@ -212,6 +227,8 @@ namespace FoundationMM
             {
                 modNumberLabel.Text = modCount + " mods available";
             }
+
+            infobar.Visible = false;
         }
 
         private void Window_FormClosing(object sender, FormClosingEventArgs e)

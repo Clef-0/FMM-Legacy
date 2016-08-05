@@ -135,6 +135,7 @@
             this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
             this.listView1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listView1_ItemCheck);
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listView1.Click += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // header_Name
             // 
@@ -435,7 +436,7 @@
             this.infobar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.infobar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.infobar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.infobar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
+            this.infobar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
             this.infobar.Controls.Add(this.infobarIcon, 0, 0);
             this.infobar.Controls.Add(this.infobarLPane, 1, 0);
             this.infobar.Controls.Add(this.infobarRPane, 2, 0);
@@ -447,7 +448,6 @@
             this.infobar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.infobar.Size = new System.Drawing.Size(623, 72);
             this.infobar.TabIndex = 5;
-            this.infobar.Visible = false;
             // 
             // infobarIcon
             // 
@@ -507,7 +507,7 @@
             this.infobarRPane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.infobarRPane.Location = new System.Drawing.Point(264, 3);
             this.infobarRPane.Name = "infobarRPane";
-            this.infobarRPane.Size = new System.Drawing.Size(226, 66);
+            this.infobarRPane.Size = new System.Drawing.Size(225, 66);
             this.infobarRPane.TabIndex = 2;
             // 
             // infobarDesc
@@ -519,17 +519,17 @@
             this.infobarDesc.Name = "infobarDesc";
             this.infobarDesc.ReadOnly = true;
             this.infobarDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.infobarDesc.Size = new System.Drawing.Size(226, 66);
+            this.infobarDesc.Size = new System.Drawing.Size(225, 66);
             this.infobarDesc.TabIndex = 1;
             this.infobarDesc.Text = "infobarDesc";
             // 
             // infobarImage
             // 
             this.infobarImage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infobarImage.Location = new System.Drawing.Point(493, 0);
+            this.infobarImage.Location = new System.Drawing.Point(492, 0);
             this.infobarImage.Margin = new System.Windows.Forms.Padding(0);
             this.infobarImage.Name = "infobarImage";
-            this.infobarImage.Size = new System.Drawing.Size(130, 72);
+            this.infobarImage.Size = new System.Drawing.Size(131, 72);
             this.infobarImage.TabIndex = 3;
             this.infobarImage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.infobarImage_MouseClick);
             // 
@@ -570,6 +570,7 @@
             this.listView2.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView2_ColumnClick);
             this.listView2.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listView2_ItemCheck);
             this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
+            this.listView2.Click += new System.EventHandler(this.listView2_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -607,7 +608,7 @@
             this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
+            this.infobar2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
             this.infobar2.Controls.Add(this.infobar2Icon, 0, 0);
             this.infobar2.Controls.Add(this.panel4, 1, 0);
             this.infobar2.Controls.Add(this.panel5, 2, 0);
@@ -679,7 +680,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(264, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(226, 66);
+            this.panel5.Size = new System.Drawing.Size(225, 66);
             this.panel5.TabIndex = 2;
             // 
             // infobar2Desc
@@ -691,17 +692,17 @@
             this.infobar2Desc.Name = "infobar2Desc";
             this.infobar2Desc.ReadOnly = true;
             this.infobar2Desc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.infobar2Desc.Size = new System.Drawing.Size(226, 66);
+            this.infobar2Desc.Size = new System.Drawing.Size(225, 66);
             this.infobar2Desc.TabIndex = 1;
             this.infobar2Desc.Text = "infobar2Desc";
             // 
             // infobar2Image
             // 
             this.infobar2Image.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infobar2Image.Location = new System.Drawing.Point(493, 0);
+            this.infobar2Image.Location = new System.Drawing.Point(492, 0);
             this.infobar2Image.Margin = new System.Windows.Forms.Padding(0);
             this.infobar2Image.Name = "infobar2Image";
-            this.infobar2Image.Size = new System.Drawing.Size(130, 72);
+            this.infobar2Image.Size = new System.Drawing.Size(131, 72);
             this.infobar2Image.TabIndex = 3;
             this.infobar2Image.MouseClick += new System.Windows.Forms.MouseEventHandler(this.infobar2Image_MouseClick);
             // 
