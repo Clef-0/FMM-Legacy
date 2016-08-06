@@ -152,6 +152,7 @@ namespace FoundationMM
 
             DirectoryInfo dir0 = Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "mods", "tagmods"));
             string identifier = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.ini");
+            string langIdentifier = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm_lang.ini");
 #if !DEBUG
             if (!File.Exists(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mtndew.dll")))
             {
@@ -191,6 +192,99 @@ namespace FoundationMM
                 }
             }
 
+            refreshMods.ToolTipText = "Reloads the current tab's mod list.";
+
+            //languages
+            if (!File.Exists(langIdentifier))
+            {
+                IniFile ini = new IniFile(langIdentifier);
+                ini.IniWriteValue("FMMLang", "Tab_MyMods", tabPage1.Text);
+                ini.IniWriteValue("FMMLang", "Tab_DownloadableMods", tabPage2.Text);
+                ini.IniWriteValue("FMMLang", "GroupBox_Mods", groupBox1.Text);
+                ini.IniWriteValue("FMMLang", "GroupBox_Directories", groupBox2.Text);
+                ini.IniWriteValue("FMMLang", "GroupBox_DeveloperMode", devModeGroupBox.Text);
+                ini.IniWriteValue("FMMLang", "GroupBox_Game", groupBox3.Text);
+                ini.IniWriteValue("FMMLang", "Button_IncreasePriority", button1.Text);
+                ini.IniWriteValue("FMMLang", "Button_DecreasePriority", button2.Text);
+                ini.IniWriteValue("FMMLang", "Button_DeleteSelectedMod", button7.Text);
+                ini.IniWriteValue("FMMLang", "Button_OpenGameFolder", openGameRoot.Text);
+                ini.IniWriteValue("FMMLang", "Button_OpenModsFolder", openMods.Text);
+                ini.IniWriteValue("FMMLang", "Button_EnableFileRestoration", lang_EnableFileRestoration);
+                ini.IniWriteValue("FMMLang", "Button_DisableFileRestoration", lang_DisableFileRestoration);
+                ini.IniWriteValue("FMMLang", "Button_EnableCMDWindows", lang_EnableCMDWindows);
+                ini.IniWriteValue("FMMLang", "Button_DisableCMDWindows", lang_DisableCMDWindows);
+                ini.IniWriteValue("FMMLang", "Button_ApplyCheckedMods", button5.Text);
+                ini.IniWriteValue("FMMLang", "Button_LaunchElDewrito", button6.Text);
+                ini.IniWriteValue("FMMLang", "Button_DownloadCheckedMods", button16.Text);
+                ini.IniWriteValue("FMMLang", "ToolTip_IncreasePriority", "Higher priority installs a mod later.\nThis means it can overwrite changes from other mods.");
+                ini.IniWriteValue("FMMLang", "ToolTip_DecreasePriority", "Lower priority installs a mod earlier.\nThis means other mods can overwrite its changes.");
+                ini.IniWriteValue("FMMLang", "ToolTip_DeleteSelectedMod", "Deletes a selected mod's installer files.\nIf installed, the mod will be removed from your game next time you apply.");
+                ini.IniWriteValue("FMMLang", "ToolTip_OpenGameFolder", "Opens your Halo Online root directory.");
+                ini.IniWriteValue("FMMLang", "ToolTip_OpenModsFolder", "Opens your FMM mods directory.");
+                ini.IniWriteValue("FMMLang", "ToolTip_ApplyCheckedMods", "Installs checked mods to your Halo Online installation.");
+                ini.IniWriteValue("FMMLang", "ToolTip_LaunchElDewrito", "Opens 'eldorado.exe' from FMM's current directory.");
+                ini.IniWriteValue("FMMLang", "ToolTip_DownloadCheckedMods", "Downloads checked mods to your 'My Mods' list.");
+                ini.IniWriteValue("FMMLang", "ToolTip_Refresh", "Reloads the current tab's mod list.");
+                ini.IniWriteValue("FMMLang", "Header_Name", header_Name.Text);
+                ini.IniWriteValue("FMMLang", "Header_Author", header_Author.Text);
+                ini.IniWriteValue("FMMLang", "Header_Version", header_Version.Text);
+                ini.IniWriteValue("FMMLang", "Header_Description", header_Description.Text);
+                ini.IniWriteValue("FMMLang", "Header_Warnings", header_Warnings.Text);
+                ini.IniWriteValue("FMMLang", "Header_Location", header_Location.Text);
+                ini.IniWriteValue("FMMLang", "String_ModAvailable", lang_ModAvailable);
+                ini.IniWriteValue("FMMLang", "String_ModsAvailable", lang_ModsAvailable);
+            }
+            else
+            {
+                IniFile ini = new IniFile(langIdentifier);
+                tabPage1.Text = ini.IniReadValue("FMMLang", "Tab_MyMods");
+                tabPage2.Text = ini.IniReadValue("FMMLang", "Tab_DownloadableMods");
+                groupBox1.Text = ini.IniReadValue("FMMLang", "GroupBox_Mods");
+                groupBox7.Text = ini.IniReadValue("FMMLang", "GroupBox_Mods");
+                groupBox2.Text = ini.IniReadValue("FMMLang", "GroupBox_Directories");
+                devModeGroupBox.Text = ini.IniReadValue("FMMLang", "GroupBox_DeveloperMode");
+                groupBox3.Text = ini.IniReadValue("FMMLang", "GroupBox_Game");
+                button1.Text = ini.IniReadValue("FMMLang", "Button_IncreasePriority");
+                button2.Text = ini.IniReadValue("FMMLang", "Button_DecreasePriority");
+                button7.Text = ini.IniReadValue("FMMLang", "Button_DeleteSelectedMod");
+                openGameRoot.Text = ini.IniReadValue("FMMLang", "Button_OpenGameFolder");
+                openMods.Text = ini.IniReadValue("FMMLang", "Button_OpenModsFolder");
+                lang_EnableFileRestoration = ini.IniReadValue("FMMLang", "Button_EnableFileRestoration");
+                lang_DisableFileRestoration = ini.IniReadValue("FMMLang", "Button_DisableFileRestoration");
+                toggleFileRestoration.Text = ini.IniReadValue("FMMLang", "Button_DisableFileRestoration");
+                lang_EnableCMDWindows = ini.IniReadValue("FMMLang", "Button_EnableCMDWindows");
+                toggleCmdWindows.Text = ini.IniReadValue("FMMLang", "Button_EnableCMDWindows");
+                lang_DisableCMDWindows = ini.IniReadValue("FMMLang", "Button_DisableCMDWindows");
+                button5.Text = ini.IniReadValue("FMMLang", "Button_ApplyCheckedMods");
+                button6.Text = ini.IniReadValue("FMMLang", "Button_LaunchElDewrito");
+                button16.Text = ini.IniReadValue("FMMLang", "Button_DownloadCheckedMods");
+                incPriToolTip.SetToolTip(this.button1, ini.IniReadValue("FMMLang", "ToolTip_IncreasePriority"));
+                topPriToolTip.SetToolTip(this.button3, ini.IniReadValue("FMMLang", "ToolTip_IncreasePriority"));
+                decPriToolTip.SetToolTip(this.button2, ini.IniReadValue("FMMLang", "ToolTip_DecreasePriority"));
+                botPriToolTip.SetToolTip(this.button4, ini.IniReadValue("FMMLang", "ToolTip_DecreasePriority"));
+                deleteToolTip.SetToolTip(this.button7, ini.IniReadValue("FMMLang", "ToolTip_DeleteSelectedMod"));
+                rootDirToolTip.SetToolTip(this.openGameRoot, ini.IniReadValue("FMMLang", "ToolTip_OpenGameFolder"));
+                modsDirToolTip.SetToolTip(this.openMods, ini.IniReadValue("FMMLang", "ToolTip_OpenModsFolder"));
+                applyToolTip.SetToolTip(this.button5, ini.IniReadValue("FMMLang", "ToolTip_ApplyCheckedMods"));
+                launchToolTip.SetToolTip(this.button6, ini.IniReadValue("FMMLang", "ToolTip_LaunchElDewrito"));
+                dlToolTip.SetToolTip(this.button16, ini.IniReadValue("FMMLang", "ToolTip_DownloadCheckedMods"));
+                refreshMods.ToolTipText = ini.IniReadValue("FMMLang", "ToolTip_Refresh");
+                header_Name.Text = ini.IniReadValue("FMMLang", "Header_Name");
+                header_Author.Text = ini.IniReadValue("FMMLang", "Header_Author");
+                header_Version.Text = ini.IniReadValue("FMMLang", "Header_Version");
+                header_Description.Text = ini.IniReadValue("FMMLang", "Header_Description");
+                header_Warnings.Text = ini.IniReadValue("FMMLang", "Header_Warnings");
+                header_Location.Text = ini.IniReadValue("FMMLang", "Header_Location");
+                columnHeader1.Text = ini.IniReadValue("FMMLang", "Header_Name");
+                columnHeader2.Text = ini.IniReadValue("FMMLang", "Header_Author");
+                columnHeader3.Text = ini.IniReadValue("FMMLang", "Header_Version");
+                columnHeader4.Text = ini.IniReadValue("FMMLang", "Header_Description");
+                columnHeader5.Text = ini.IniReadValue("FMMLang", "Header_Warnings");
+                columnHeader6.Text = ini.IniReadValue("FMMLang", "Header_Location");
+                lang_ModAvailable = ini.IniReadValue("FMMLang", "String_ModAvailable");
+                lang_ModsAvailable = ini.IniReadValue("FMMLang", "String_ModsAvailable");
+            }
+
 #endif
             IniFile ini2 = new IniFile(identifier);
 
@@ -218,14 +312,15 @@ namespace FoundationMM
             }
 
             Log("Counting available mods...");
+
             int modCount = listView1.Items.Count;
             if (modCount == 1)
             {
-                modNumberLabel.Text = "1 mod available";
+                modNumberLabel.Text = "1 " + lang_ModAvailable;
             }
             else
             {
-                modNumberLabel.Text = modCount + " mods available";
+                modNumberLabel.Text = modCount + " " + lang_ModsAvailable;
             }
 
             infobar.Visible = false;
@@ -283,11 +378,11 @@ namespace FoundationMM
 
             if (modCount == 1)
             {
-                modNumberLabel.Text = "1 mod available";
+                modNumberLabel.Text = "1 " + lang_ModAvailable;
             }
             else
             {
-                modNumberLabel.Text = modCount + " mods available";
+                modNumberLabel.Text = modCount + " " + lang_ModsAvailable;
             }
 
             infobar.Visible = false;

@@ -6,6 +6,9 @@ namespace FoundationMM
 {
     public partial class Window : Form
     {
+        string lang_ModAvailable = "mod available";
+        string lang_ModsAvailable = "mods available";
+
         private void refreshModsClick(object sender, EventArgs e)
         {
             if (enabledTab == 0)
@@ -19,11 +22,11 @@ namespace FoundationMM
                 int modCount = listView1.Items.Count;
                 if (modCount == 1)
                 {
-                    modNumberLabel.Text = "1 mod available";
+                    modNumberLabel.Text = "1 " + lang_ModAvailable;
                 }
                 else
                 {
-                    modNumberLabel.Text = modCount + " mods available";
+                    modNumberLabel.Text = modCount + " " + lang_ModsAvailable;
                 }
             }
             else

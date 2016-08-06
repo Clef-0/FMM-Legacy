@@ -21,14 +21,14 @@ namespace Ini
 
         public void IniWriteValue(string Section, string Key, string Value)
         {
-            WritePrivateProfileString(Section, Key, Value, this.path);
+            WritePrivateProfileString(Section, Key, Value.Replace("\n", "{newline}"), this.path);
         }
         
         public string IniReadValue(string Section, string Key)
         {
             StringBuilder temp = new StringBuilder(500);
             int i = GetPrivateProfileString(Section, Key, "", temp, 500, this.path);
-            return temp.ToString();
+            return temp.ToString().Replace("{newline}", "\n");
         }
     }
 }

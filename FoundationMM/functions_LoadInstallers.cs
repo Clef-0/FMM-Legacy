@@ -134,11 +134,11 @@ namespace FoundationMM
                                 int modCount = listView2.Items.Count;
                                 if (modCount == 1)
                                 {
-                                    statusStrip1.Invoke((MethodInvoker)delegate { modNumberLabel.Text = "1 mod available"; });
+                                    statusStrip1.Invoke((MethodInvoker)delegate { modNumberLabel.Text = "1 " + lang_ModAvailable; });
                                 }
                                 else
                                 {
-                                    statusStrip1.Invoke((MethodInvoker)delegate { modNumberLabel.Text = modCount + " mods available"; });
+                                    statusStrip1.Invoke((MethodInvoker)delegate { modNumberLabel.Text = modCount + " " + lang_ModsAvailable; });
                                 }
                             }
                         }

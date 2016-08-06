@@ -361,7 +361,6 @@
             this.refreshMods.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.refreshMods.Name = "refreshMods";
             this.refreshMods.Size = new System.Drawing.Size(21, 20);
-            this.refreshMods.ToolTipText = "Reloads the current tab\'s mod list.";
             this.refreshMods.Click += new System.EventHandler(this.refreshModsClick);
             // 
             // modNumberLabel
@@ -373,7 +372,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(658, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(627, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // percentageLabel
