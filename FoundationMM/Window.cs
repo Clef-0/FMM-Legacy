@@ -13,7 +13,6 @@ namespace FoundationMM
 {
     public partial class Window : Form
     {
-
         string[] files = {
                      @"fonts\font_package.bin",
                      "audio.dat",

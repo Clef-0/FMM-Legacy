@@ -25,6 +25,7 @@ namespace FoundationMM
 
         private void applyClick(object sender, EventArgs e)
         {
+            infobar.Visible = false;
             if (listView1.CheckedItems.Count == 0)
             {
                 string fmmdat = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "fmm.dat");
