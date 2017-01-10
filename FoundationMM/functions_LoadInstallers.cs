@@ -3,7 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
+using System.Net.Http;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace FoundationMM
 {
@@ -86,6 +90,8 @@ namespace FoundationMM
 
         private void populateInstallerDLList()
         {
+            Dictionary<string, string> downloadsDictionary = new Dictionary<string, string>();
+
             if (Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "fmm-svn")))
             {
                 Directory.Delete(Path.Combine(Directory.GetCurrentDirectory(), "fmm-svn"), true);
@@ -95,13 +101,28 @@ namespace FoundationMM
             {
                 File.Delete(Path.Combine(Directory.GetCurrentDirectory(), "fmm-svn", "links.txt"));
             }
-            using (var client = new System.Net.WebClient())
+            using (var client = new WebClient())
             {
                 client.DownloadFile("https://raw.githubusercontent.com/Clef-0/FMM-Mods/master/meta/links.txt", Path.Combine(Directory.GetCurrentDirectory(), "fmm-svn", "links.txt"));
             }
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    string response = client.GetAsync("https://dev.fractalcore.net/fmm/api/mod/list").Result.Content.ReadAsStringAsync().Result;
+                    if ((response.StartsWith("{") && response.EndsWith("}")) || (response.StartsWith("[") && response.EndsWith("]")))
+                    {
+                        JArray a = JArray.Parse(response);
 
+                        foreach (JObject o in a.Children<JObject>())
+                        {
+                            downloadsDictionary.Add((string)o.Property("name").Value, (string)o.Property("downloads").Value);
+                        }
+                    }
+                } catch { }
+            }
             
-                if (File.Exists(Path.Combine(Directory.GetCurrentDirectory(), "fmm-svn", "links.txt")))
+            if (File.Exists(Path.Combine(Directory.GetCurrentDirectory(), "fmm-svn", "links.txt")))
                 {
                     IEnumerable<string> lines = File.ReadLines(Path.Combine(Directory.GetCurrentDirectory(), "fmm-svn", "links.txt"));
                     foreach (string modini in lines)
@@ -125,9 +146,11 @@ namespace FoundationMM
                             try { modWarnings = ini.IniReadValue("FMMInfo", "Warnings"); }
                             catch { modWarnings = ""; }
                             string modDesc = ini.IniReadValue("FMMInfo", "Desc");
-
+                            string modUsers = "";
+                            downloadsDictionary.TryGetValue(modName.ToLower(), out modUsers);
                             string modLocation = modini.Replace("https://raw.githubusercontent.com/Clef-0/FMM-Mods/master/", "").Replace(".ini", ".fm");
-                            listView2.Invoke((MethodInvoker)delegate { listView2.Items.Add(new ListViewItem(new[] { modName, modAuthor, modVersion, modDesc, modWarnings, modLocation })); });
+
+                            listView2.Invoke((MethodInvoker)delegate { listView2.Items.Add(new ListViewItem(new[] { modName, modAuthor, modVersion, modDesc, modWarnings, modUsers, modLocation })); });
 
                             if (enabledTab == 1)
                             {

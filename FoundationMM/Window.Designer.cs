@@ -90,6 +90,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.button16 = new System.Windows.Forms.Button();
+            this.columnDL_downloads = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.devModeGroupBox.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -372,7 +373,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(627, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(658, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // percentageLabel
@@ -555,6 +556,7 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
+            this.columnDL_downloads,
             this.columnHeader6});
             this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView2.FullRowSelect = true;
@@ -735,6 +737,10 @@
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
+            // columnDL_downloads
+            // 
+            this.columnDL_downloads.Text = "Users";
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -839,6 +845,7 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox infobar2Desc;
         private System.Windows.Forms.Panel infobar2Image;
+        private System.Windows.Forms.ColumnHeader columnDL_downloads;
     }
 }
 

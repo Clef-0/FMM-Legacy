@@ -198,7 +198,7 @@ namespace FoundationMM
             if ((listView2.SelectedItems.Count > 0) && (selecting == false) && (infobarsEnabled == true))
             {
                 selecting = true;
-                IniFile ini = new IniFile(Path.Combine(Directory.GetCurrentDirectory(), "fmm-svn", Path.GetFileName(listView2.SelectedItems[0].SubItems[5].Text.Replace(".fm", ".ini"))));
+                IniFile ini = new IniFile(Path.Combine(Directory.GetCurrentDirectory(), "fmm-svn", Path.GetFileName(listView2.SelectedItems[0].SubItems[6].Text.Replace(".fm", ".ini"))));
                 
                 infobar2.Visible = true;
                 

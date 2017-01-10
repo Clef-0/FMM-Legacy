@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -24,10 +25,19 @@ namespace FoundationMM
 
             foreach (ListViewItem item in mods)
             {
+                using (var client = new HttpClient())
+                {
+                    try
+                    {
+                        var response = client.GetAsync(@"https://dev.fractalcore.net/fmm/api/mod/" + item.SubItems[0].Text.ToLower() + @"/downloaded");
+                        Console.WriteLine(response.Result.ToString());
+                    }
+                    catch { }
+                }
                 tabControl1.Invoke((MethodInvoker)delegate { tabControl1.Enabled = false; });
-                string remLocation = "https://github.com/Clef-0/FMM-Mods/trunk/" + item.SubItems[5].Text;
+                string remLocation = "https://github.com/Clef-0/FMM-Mods/trunk/" + item.SubItems[6].Text;
                 Debug.WriteLine(remLocation);
-                string locLocation = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods", item.SubItems[5].Text.Replace("/", "\\"));
+                string locLocation = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "mods", "tagmods", item.SubItems[6].Text.Replace("/", "\\"));
                 Debug.WriteLine(locLocation);
                 dlModWorker.RunWorkerAsync(new string[] { remLocation, locLocation });
                 do {
